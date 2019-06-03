@@ -32,6 +32,7 @@ then
 	killall MiSTer
 fi
 
+cd $SCUMMVM_HOME_DIR
 echo "Starting ScummVM..."
 taskset $SCUMMVM_CPU_MASK $SCUMMVM_HOME_DIR/$SCUMMVM_EXE_NAME $SCUMMVM_OPTIONS 
 
