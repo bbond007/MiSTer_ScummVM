@@ -18,7 +18,7 @@ SCUMMVM_LIB_PATH="$SCUMMVM_HOME_DIR/arm-linux-gnueabihf:$SCUMMVM_HOME_DIR/arm-li
 KILL_MISTER=FALSE
 
 echo "Setting Video mode..."
-#vmode f rgb16
+vmode -r 640 480 rgb16
 
 echo "Setting library path..."
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$SCUMMVM_LIB_PATH"
