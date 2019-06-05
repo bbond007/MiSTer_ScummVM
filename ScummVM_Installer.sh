@@ -130,6 +130,15 @@ then
 		echo "Creating --> $INSTALL_DIR"
 		mkdir $INSTALL_DIR
 	fi
+	
+	if [ -d "$SCRIPTS_DIR" ];
+	then
+		echo "Scripts directory found :)"
+	else
+		echo "Scripts directory not found :("
+		echo "Creating --> $SCRIPTS_DIR"
+		mkdir $SCRIPTS_DIR
+	fi
 
 	if [ "$DEB_SCUMMVM20" = "TRUE" ];
 	then
