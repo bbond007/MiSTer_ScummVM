@@ -21,9 +21,12 @@ ALLOW_INSECURE_SSL=TRUE
 INSTALL_DIR=/media/fat/ScummVM
 SCRIPTS_DIR=/media/fat/Scripts
 DEB_REPO=http://http.us.debian.org/debian/pool/main
-DEB_SCUMMVM17=TRUE
+DEB_SCUMMVM17=FALSE
 BBOND007_SCUMMVM20=TRUE
 GITHUB_REPO=https://github.com/bbond007/MiSTer_ScummVM/raw/master/
+ENGINE_DATA=TRUE
+CREATE_DIRS=TRUE
+INTERNET_CHECK=https://github.com
 
 #These options probably should not be changed...
 DEB_SCUMMVM20=FALSE
@@ -38,7 +41,7 @@ function setupCURL
 	CURL_RETRY="--connect-timeout 15 --max-time 120 --retry 3 --retry-delay 5"
 	# test network and https by pinging the most available website 
 	SSL_SECURITY_OPTION=""
-	curl ${CURL_RETRY} --silent https://google.com > /dev/null 2>&1
+	curl ${CURL_RETRY} --silent $INTERNET_CHECK > /dev/null 2>&1
 	case $? in
 		0)
 			;;
@@ -159,7 +162,7 @@ then
 	
 	if [ "$BBOND007_SCUMMVM20" = "TRUE" ];
 	then
-		echo "Downloading BBond007_ScummVM_2_0_0..."
+		echo "Downloading --> BBond007_ScummVM_2_0_0..."
 		curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/scummvm20" -o "$INSTALL_DIR/scummvm20"
 	fi
 	
@@ -218,6 +221,31 @@ then
 		rm -rf $INSTALL_DIR/doc
 		rm -rf $INSTALL_DIR/lintian
 		rm -rf $INSTALL_DIR/menu
+	fi
+	
+	if [ "$ENGINE_DATA" = "TRUE" ];
+	then
+		for ENGINE_FILE in "access.dat" "cryo.dat" "drascula.dat" "hugo.dat" "kyra.dat" "lure.dat" "macventure.dat" "mort.dat" "teenagent.dat" "titanic.dat" "tony.dat" "toon.dat";
+		do
+			echo "Downloading engine data --> $ENGINE_FILE"
+			curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/$ENGINE_FILE" -o "$INSTALL_DIR/$ENGINE_FILE"
+		done
+	fi
+	
+	if [ "$CREATE_DIRS" = "TRUE" ];
+	then
+		echo "Creating additional directories..."
+		for NEW_DIR in "GAMES";
+		do
+			if [ -d "$INSTALL_DIR/$NEW_DIR" ];
+			then
+				echo "$INSTALL_DIR/$NEW_DIR directory found :)"
+			else
+				echo "$INSTALL_DIR/$NEW_DIR directory not found :("
+				echo "Creating --> $INSTALL_DIR/$NEW_DIR"
+				mkdir $INSTALL_DIR/$NEW_DIR
+			fi
+		done
 	fi
 	
 	echo "Done in:"
