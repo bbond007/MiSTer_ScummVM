@@ -26,6 +26,7 @@ BBOND007_SCUMMVM20=TRUE
 GITHUB_REPO=https://github.com/bbond007/MiSTer_ScummVM/raw/master/
 ENGINE_DATA=TRUE
 CREATE_DIRS=TRUE
+DEFAULT_THEME=FALSE
 INTERNET_CHECK=https://github.com
 
 #These options probably should not be changed...
@@ -230,6 +231,12 @@ then
 			echo "Downloading engine data --> $ENGINE_FILE"
 			curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/$ENGINE_FILE" -o "$INSTALL_DIR/$ENGINE_FILE"
 		done
+	fi
+	
+	if [ "$DEFAULT_THEME" = "TRUE" ];
+	then
+		echo "Downloading --> SCUMM Modern theme"
+		curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/scummmodern.zip" -o "$INSTALL_DIR/scummmodern.zip"
 	fi
 	
 	if [ "$CREATE_DIRS" = "TRUE" ];
