@@ -32,24 +32,24 @@ ScummVM supported games --> https://wiki.scummvm.org/index.php/Category:Supporte
 
 ScummVM compatibility --> https://www.scummvm.org/compatibility/
 
-Videos of MiSTer ScummVM:
+Videos of ScummVM running on my MiSTer:
 
-Broken Sword II : Shadow of the Templars --> http://youtu.be/cvAkbFFmFOU
+Broken Sword II : Shadow of the Templars --> https://youtu.be/cvAkbFFmFOU
 
-Monkey Island III : The Curse of Monkey Island --> http://youtu.be/2H59sGAmZKI
+Monkey Island III : The Curse of Monkey Island --> https://youtu.be/2H59sGAmZKI
 
-Leisure Suit Larry 7 : Love for Sail! --> http://y2u.be/e6anA4qPgfI
+Leisure Suit Larry 7 : Love for Sail! --> https://youtu.be/e6anA4qPgfI
 
-Phantasmagoria : Intro --> http://y2u.be/WpFPYcs-QCI
+Phantasmagoria : Intro --> https://youtu.be/WpFPYcs-QCI
 
-Phantasmagoria : Chapter I --> http://y2u.be/3PY-_VmXTIg
+Phantasmagoria : Chapter I --> https://youtu.be/3PY-_VmXTIg
 
-The 7th Guest (Intro - With remastered audio by James Woodcock) --> http://youtu.be/WZ4AgVrH-uw
+The 7th Guest (Intro - With remastered audio by James Woodcock) --> https://youtu.be/WZ4AgVrH-uw
 
-Space Quest VI : Roger Wilco in the Spinal Frontier --> http://youtu.be/mee282EkjZQ
+Space Quest VI : Roger Wilco in the Spinal Frontier --> https://youtu.be/mee282EkjZQ
 
-Beavis and Butt-Head : Virtual Stupidity --> http://youtu.be/_BjHLZnZt1Q
+Beavis and Butt-Head : Virtual Stupidity --> https://youtu.be/_BjHLZnZt1Q
 
-Discworld (Intro) --> http://youtu.be/l7aNRQE76Ss
+Discworld (Intro) --> https://youtu.be/l7aNRQE76Ss
 
-Discworld II (Intro) : Missing Presumed...!? --> http://youtu.be/M5P6Ixetwuk
+Discworld II (Intro) : Missing Presumed...!? --> https://youtu.be/M5P6Ixetwuk
