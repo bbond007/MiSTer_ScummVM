@@ -20,20 +20,20 @@
 ALLOW_INSECURE_SSL=TRUE
 INSTALL_DIR=/media/fat/ScummVM
 SCRIPTS_DIR=/media/fat/Scripts
-DEB_REPO=http://http.us.debian.org/debian/pool/main
+
 DEB_SCUMMVM17=FALSE
 BBOND007_SCUMMVM20=TRUE
-GITHUB_REPO=https://github.com/bbond007/MiSTer_ScummVM/raw/master/
+GITHUB_REPO=https://github.com/bbond007/MiSTer_ScummVM/raw/master
+GIT_DEB_REPO="$GITHUB_REPO/DEBS"
 ENGINE_DATA=TRUE
 CREATE_DIRS=TRUE
 DEFAULT_THEME=FALSE
 INTERNET_CHECK=https://github.com
+VERBOSE_MODE=FALSE
 
 #These options probably should not be changed...
-DEB_SCUMMVM20=FALSE
 DELETE_JUNK=TRUE
 DO_INSTALL=TRUE
-
 
 #------------------------------------------------------------------------------
 function setupCURL
@@ -70,54 +70,49 @@ function setupCURL
 }
 
 #------------------------------------------------------------------------------
-function installDEBS () {
-	DEB_REPOSITORIES=( "${@}" )
+function installGITDEBS () {
+	GIT_DEB_REPOSITORIES=( "${@}" )
 	TEMP_PATH="/tmp"
-	for DEB_REPOSITORY in "${DEB_REPOSITORIES[@]}"; do
+	for GIT_DEB_REPOSITORY in "${GIT_DEB_REPOSITORIES[@]}"; do
 		OLD_IFS="${IFS}"
 		IFS="|"
-		PARAMS=(${DEB_REPOSITORY})
-		DEBS_URL="${PARAMS[0]}"
-		DEB_PREFIX="${PARAMS[1]}"
-		ARCHIVE_FILES="${PARAMS[2]}"
-		STRIP_COMPONENTS="${PARAMS[3]}"
-		DEST_DIR="${PARAMS[4]}"
+		PARAMS=(${GIT_DEB_REPOSITORY})
+		TEMP_PATH="/tmp"
+		DEB_URL="${PARAMS[0]}"
+		DEB_NAME="${PARAMS[1]}"
+		ARC_FILES="${PARAMS[2]}"
+		STRIP_CPT="${PARAMS[3]}"
+        	DEST_DIR="${PARAMS[4]}"
 		IFS="${OLD_IFS}"
-		if [ ! -f "${DEST_DIR}/$(echo $ARCHIVE_FILES | sed 's/*//g')" ]
+		if [ "$VERBOSE_MODE" = "TRUE" ];
 		then
-			DEB_NAMES=$(${CURL_SILENT} "${DEBS_URL}" | grep -oE "\"${DEB_PREFIX}[a-zA-Z0-9%./_+-]*_(armhf|all)\.deb\"" | sed 's/\"//g')
-			MAX_VERSION=""
-			MAX_DEB_NAME=""
-			for DEB_NAME in $DEB_NAMES; do
-				CURRENT_VERSION=$(echo "${DEB_NAME}" | grep -o '_[a-zA-Z0-9%.+-]*_' | sed 's/_//g')
-				if [[ "${CURRENT_VERSION}" > "${MAX_VERSION}" ]]
-				then
-					MAX_VERSION="${CURRENT_VERSION}"
-					MAX_DEB_NAME="${DEB_NAME}"
-				fi
-			done
-			[ "${MAX_DEB_NAME}" == "" ] && echo "Error searching for ${DEB_PREFIX} in ${DEBS_URL}" && exit 1
-			echo "Downloading ${MAX_DEB_NAME}"
-			${CURL} "${DEBS_URL}/${MAX_DEB_NAME}" -o "${TEMP_PATH}/${MAX_DEB_NAME}"
-			[ ! -f "${TEMP_PATH}/${MAX_DEB_NAME}" ] && echo "Error: no ${TEMP_PATH}/${MAX_DEB_NAME} found." && exit 1
-			echo "Extracting ${ARCHIVE_FILES}"
-			ORIGINAL_DIR="$(pwd)"
-			cd "${TEMP_PATH}"
-			rm data.tar.xz data.tar.gz > /dev/null 2>&1	
-			ar -x "${TEMP_PATH}/${MAX_DEB_NAME}" data.tar.*
-			cd "${ORIGINAL_DIR}"
-			rm "${TEMP_PATH}/${MAX_DEB_NAME}"
-			mkdir -p "${DEST_DIR}"
-			if [ -f "${TEMP_PATH}/data.tar.xz" ]
-			then
-				tar -xJf "${TEMP_PATH}/data.tar.xz" --wildcards --no-anchored --strip-components="${STRIP_COMPONENTS}" -C "${DEST_DIR}" "${ARCHIVE_FILES}"
-				rm "${TEMP_PATH}/data.tar.xz" > /dev/null 2>&1
-			else
-			  	[ ! -f "${TEMP_PATH}/data.tar.gz" ] && echo "Error: no ${TEMP_PATH}/data.tar found." && exit 1
-			  	tar -xzf "${TEMP_PATH}/data.tar.gz" --wildcards --no-anchored --strip-components="${STRIP_COMPONENTS}" -C "${DEST_DIR}" "${ARCHIVE_FILES}"
-			  	rm "${TEMP_PATH}/data.tar.gz" > /dev/null 2>&1
-			fi
-		fi	
+ 			echo "DEB_URL   --> $DEB_URL"
+			echo "DEB_NAME  --> $DEB_NAME"
+			echo "ARC_FILES --> $ARC_FILES"
+			echo "STRIP_CPT --> $STRIP_CPT"
+			echo "DEST_DIR  --> $DEST_DIR"	
+		else
+			echo "Downloading --> ${DEB_NAME}"
+		fi
+		curl $SSL_SECURITY_OPTION $CURL_RETRY -L "${DEB_URL}/${DEB_NAME}" -o "${TEMP_PATH}/${DEB_NAME}"
+		[ ! -f "${TEMP_PATH}/${DEB_NAME}" ] && echo "Error: no ${TEMP_PATH}/${DEB_NAME} found." && exit 1
+		echo "Extracting ${ARC_FILES}"
+		ORIGINAL_DIR="$(pwd)"
+		cd "${TEMP_PATH}"
+		rm data.tar.xz data.tar.gz > /dev/null 2>&1	
+		ar -x "${TEMP_PATH}/${DEB_NAME}" data.tar.*
+		cd "${ORIGINAL_DIR}"
+		rm "${TEMP_PATH}/${DEB_NAME}"
+		mkdir -p "${DEST_DIR}"
+		if [ -f "${TEMP_PATH}/data.tar.xz" ]
+		then
+			tar -xJf "${TEMP_PATH}/data.tar.xz" --wildcards --no-anchored --strip-components="${STRIP_CPT}" -C "${DEST_DIR}" "${ARC_FILES}"
+			rm "${TEMP_PATH}/data.tar.xz" > /dev/null 2>&1
+		else
+		  	[ ! -f "${TEMP_PATH}/data.tar.gz" ] && echo "Error: no ${TEMP_PATH}/data.tar found." && exit 1
+		  	tar -xzf "${TEMP_PATH}/data.tar.gz" --wildcards --no-anchored --strip-components="${STRIP_CPT}" -C "${DEST_DIR}" "${ARC_FILES}"
+		  	rm "${TEMP_PATH}/data.tar.gz" > /dev/null 2>&1
+		fi
 	done
 }
 
@@ -143,21 +138,13 @@ then
 		echo "Creating --> $SCRIPTS_DIR"
 		mkdir $SCRIPTS_DIR
 	fi
-
-	if [ "$DEB_SCUMMVM20" = "TRUE" ];
-	then
-		installDEBS "$DEB_REPO/s/scummvm|scummvm_2.0.0|scummvm|3|$INSTALL_DIR"
-		installDEBS "$DEB_REPO/g/glibc|libc6_2.28-10|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-		installDEBS "$DEB_REPO/libs/libsdl2|libsdl2-2.0-0_2.0.5|lib*|3|$INSTALL_DIR"
-		installDEBS "$DEB_REPO/p/pulseaudio|libpulse0_12.2-4|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	fi
 	
 	if [ "$DEB_SCUMMVM17" = "TRUE" ];
 	then
-		installDEBS "$DEB_REPO/s/scummvm|scummvm_1.7.0|scummvm|3|$INSTALL_DIR"
-		installDEBS "$DEB_REPO/libg/libglvnd|libgl1_1.1.0-1|lib*|3|$INSTALL_DIR"
-		installDEBS "$DEB_REPO/libg/libglvnd|libglx0_1.1.0-1|lib*|3|$INSTALL_DIR"
-		installDEBS "$DEB_REPO/libg/libglvnd|libglvnd0_1.1.0-1|lib*|3|$INSTALL_DIR"
+		installGITDEBS "$GIT_DEB_REPO|scummvm_1.7.0+dfsg-2_armhf.deb|scummvm|3|$INSTALL_DIR"
+		installGITDEBS "$GIT_DEB_REPO|libgl1_1.1.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
+		installGITDEBS "$GIT_DEB_REPO|libglvnd0_1.1.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
+		installGITDEBS "$GIT_DEB_REPO|libglx0_1.1.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
 		curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/ScummVM_1_7_0.sh" -o "$SCRIPTS_DIR/ScummVM_1_7_0.sh"
 	fi
 	
@@ -169,52 +156,52 @@ then
 	
 	curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/ScummVM_2_0_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_0_0.sh"
 
-	installDEBS "$DEB_REPO/d/directfb|libdirectfb-1.2-9_1.2.10.0|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/f/faad2|libfaad2_2.8.8-2|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/f/flac|libflac8_1.3.2-3|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/f/fluidsynth|libfluidsynth1_1.1.6-2|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/l/lz4|liblz4-1_1.9.1-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/m/mpeg2dec|libmpeg2-4_0.5.1-8|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/n/ncurses|libtinfo5_6.1|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installDEBS "$DEB_REPO/n/ncurses|libtinfo6_6.1|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installDEBS "$DEB_REPO/p/pulseaudio|libpulse0_10.0-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/r/readline6|libreadline6_6.3-8|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installDEBS "$DEB_REPO/s/sndio|libsndio6.1_1.1.0-3|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/s/sndio|libsndio7.0_1.5.0-3|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/s/systemd|libsystemd0_215-17|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installDEBS "$DEB_REPO/t/tcp-wrappers|libwrap0_7.6.q-28|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installDEBS "$DEB_REPO/w/wayland|libwayland-egl1_1.16.0-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/liba/libasyncns|libasyncns0_0.8-6|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libb/libbsd|libbsd0_0.7.0-2|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installDEBS "$DEB_REPO/libc/libcaca|libcaca0_0.99.beta19-2|lib*|3|$INSTALL_DIR"	
-	installDEBS "$DEB_REPO/libi/libice|libice6_1.0.9-2|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libj/libjpeg6b|libjpeg62_6b2-3|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libm/libmad|libmad0_0.15.1b-8|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libo/libogg|libogg0_1.3.2-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libp/libpng|libpng12-0_1.2.50-2|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installDEBS "$DEB_REPO/libs/libsdl1.2|libsdl1.2debian_1.2.15-10|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libs/libsm|libsm6_1.2.3-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libs/libsndfile|libsndfile1_1.0.28-6|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libt/libtheora|libtheora0_1.1.1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libv/libvorbis|libvorbis0a_1.3.6-2|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libv/libvorbis|libvorbisenc2_1.3.6-2|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libv/libvorbis|libvorbisfile3_1.3.6-2|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libx11|libx11-6_1.6.7-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libx11|libx11-xcb1_1.6.7-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxau|libxau6_1.0.8-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxcb|libxcb1_1.12-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxcursor|libxcursor1_1.2.0-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxdmcp|libxdmcp6_1.1.2-3|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxext|libxext6_1.3.3-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxfixes|libxfixes3_5.0.3-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxi|libxi6_1.7.9-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxinerama|libxinerama1_1.1.4-2|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxrandr|libxrandr2_1.5.1-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxrender|libxrender1_0.9.10-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxss|libxss1_1.2.3-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxtst|libxtst6_1.2.3-1|lib*|3|$INSTALL_DIR"
-	installDEBS "$DEB_REPO/libx/libxxf86vm|libxxf86vm1_1.1.4-1|lib*|3|$INSTALL_DIR"
-	
+	installGITDEBS "$GIT_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libbsd0_0.7.0-2_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
+	installGITDEBS "$GIT_DEB_REPO|libcaca0_0.99.beta19-2.1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libdirectfb-1.2-9_1.2.10.0-8+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libfaad2_2.8.8-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libflac8_1.3.2-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libfluidsynth1_1.1.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libice6_1.0.9-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libjpeg62_6b2-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|liblz4-1_1.9.1-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libmad0_0.15.1b-8+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libmpeg2-4_0.5.1-8_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libogg0_1.3.2-1+b1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libpng12-0_1.2.50-2+deb8u3_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
+	installGITDEBS "$GIT_DEB_REPO|libpulse0_10.0-1+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libreadline6_6.3-8+b3_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
+	installGITDEBS "$GIT_DEB_REPO|libsdl1.2debian_1.2.15-10+b1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libsm6_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libsndfile1_1.0.28-6_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libsndio6.1_1.1.0-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libsndio7.0_1.5.0-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libsystemd0_215-17+deb8u7_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
+	installGITDEBS "$GIT_DEB_REPO|libtheora0_1.1.1+dfsg.1-6_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libtinfo5_6.1+20181013-2_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
+	installGITDEBS "$GIT_DEB_REPO|libtinfo6_6.1+20181013-2_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
+	installGITDEBS "$GIT_DEB_REPO|libvorbis0a_1.3.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libvorbisenc2_1.3.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libvorbisfile3_1.3.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libwayland-egl1_1.16.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libwrap0_7.6.q-28_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
+	installGITDEBS "$GIT_DEB_REPO|libx11-6_1.6.7-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libx11-xcb1_1.6.7-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxau6_1.0.8-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxcb1_1.12-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxcursor1_1.2.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxdmcp6_1.1.2-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxext6_1.3.3-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxfixes3_5.0.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxi6_1.7.9-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxinerama1_1.1.4-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxrandr2_1.5.1-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxrender1_0.9.10-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxss1_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxtst6_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGITDEBS "$GIT_DEB_REPO|libxxf86vm1_1.1.4-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
+		
 	if [ "$DELETE_JUNK" = "TRUE" ];
 	then
 		echo "Deleting junk..."
@@ -222,6 +209,9 @@ then
 		rm -rf $INSTALL_DIR/doc
 		rm -rf $INSTALL_DIR/lintian
 		rm -rf $INSTALL_DIR/menu
+		rm -rf $INSTALL_DIR/arm-linux-gnueabihf/doc
+		rm -rf $INSTALL_DIR/arm-linux-gnueabihf/doc-base
+		
 	fi
 	
 	if [ "$ENGINE_DATA" = "TRUE" ];
@@ -262,5 +252,4 @@ then
 		sleep 1
 	done
 fi
-
 
