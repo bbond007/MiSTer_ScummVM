@@ -20,11 +20,10 @@
 ALLOW_INSECURE_SSL=TRUE
 INSTALL_DIR=/media/fat/ScummVM
 SCRIPTS_DIR=/media/fat/Scripts
-
+GITHUB_REPO=https://github.com/bbond007/MiSTer_ScummVM/raw/master
+GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"
 DEB_SCUMMVM17=FALSE
 BBOND007_SCUMMVM20=TRUE
-GITHUB_REPO=https://github.com/bbond007/MiSTer_ScummVM/raw/master
-GIT_DEB_REPO="$GITHUB_REPO/DEBS"
 ENGINE_DATA=TRUE
 CREATE_DIRS=TRUE
 DEFAULT_THEME=FALSE
@@ -70,13 +69,13 @@ function setupCURL
 }
 
 #------------------------------------------------------------------------------
-function installGITDEBS () {
-	GIT_DEB_REPOSITORIES=( "${@}" )
+function installGithubDEBS () {
+	GITHUB_DEB_REPOSITORIES=( "${@}" )
 	TEMP_PATH="/tmp"
-	for GIT_DEB_REPOSITORY in "${GIT_DEB_REPOSITORIES[@]}"; do
+	for GITHUB_DEB_REPOSITORY in "${GITHUB_DEB_REPOSITORIES[@]}"; do
 		OLD_IFS="${IFS}"
 		IFS="|"
-		PARAMS=(${GIT_DEB_REPOSITORY})
+		PARAMS=(${GITHUB_DEB_REPOSITORY})
 		TEMP_PATH="/tmp"
 		DEB_URL="${PARAMS[0]}"
 		DEB_NAME="${PARAMS[1]}"
@@ -94,7 +93,7 @@ function installGITDEBS () {
 		else
 			echo "Downloading --> ${DEB_NAME}"
 		fi
-		curl $SSL_SECURITY_OPTION $CURL_RETRY -L "${DEB_URL}/${DEB_NAME}" -o "${TEMP_PATH}/${DEB_NAME}"
+		${CURL} -L "${DEB_URL}/${DEB_NAME}" -o "${TEMP_PATH}/${DEB_NAME}"
 		[ ! -f "${TEMP_PATH}/${DEB_NAME}" ] && echo "Error: no ${TEMP_PATH}/${DEB_NAME} found." && exit 1
 		echo "Extracting ${ARC_FILES}"
 		ORIGINAL_DIR="$(pwd)"
@@ -141,92 +140,89 @@ then
 	
 	if [ "$DEB_SCUMMVM17" = "TRUE" ];
 	then
-		installGITDEBS "$GIT_DEB_REPO|scummvm_1.7.0+dfsg-2_armhf.deb|scummvm|3|$INSTALL_DIR"
-		installGITDEBS "$GIT_DEB_REPO|libgl1_1.1.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
-		installGITDEBS "$GIT_DEB_REPO|libglvnd0_1.1.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
-		installGITDEBS "$GIT_DEB_REPO|libglx0_1.1.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
-		curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/ScummVM_1_7_0.sh" -o "$SCRIPTS_DIR/ScummVM_1_7_0.sh"
+		installGithubDEBS "$GITHUB_DEB_REPO|scummvm_1.7.0+dfsg-2_armhf.deb|scummvm|3|$INSTALL_DIR"
+		installGithubDEBS "$GITHUB_DEB_REPO|libgl1_1.1.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
+		installGithubDEBS "$GITHUB_DEB_REPO|libglvnd0_1.1.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
+		installGithubDEBS "$GITHUB_DEB_REPO|libglx0_1.1.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
+		${CURL} -L "$GITHUB_REPO/ScummVM_1_7_0.sh" -o "$SCRIPTS_DIR/ScummVM_1_7_0.sh"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM20" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_0_0..."
-		curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/scummvm20" -o "$INSTALL_DIR/scummvm20"
+		${CURL} -L "$GITHUB_REPO/scummvm20" -o "$INSTALL_DIR/scummvm20"
 	fi
 	
-	curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/ScummVM_2_0_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_0_0.sh"
+	${CURL} -L "$GITHUB_REPO/ScummVM_2_0_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_0_0.sh"
 
-	installGITDEBS "$GIT_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libbsd0_0.7.0-2_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installGITDEBS "$GIT_DEB_REPO|libcaca0_0.99.beta19-2.1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libdirectfb-1.2-9_1.2.10.0-8+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libfaad2_2.8.8-3_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libflac8_1.3.2-3_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libfluidsynth1_1.1.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libice6_1.0.9-2_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libjpeg62_6b2-3_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|liblz4-1_1.9.1-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libmad0_0.15.1b-8+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libmpeg2-4_0.5.1-8_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libogg0_1.3.2-1+b1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libpng12-0_1.2.50-2+deb8u3_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installGITDEBS "$GIT_DEB_REPO|libpulse0_10.0-1+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libreadline6_6.3-8+b3_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installGITDEBS "$GIT_DEB_REPO|libsdl1.2debian_1.2.15-10+b1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libsm6_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libsndfile1_1.0.28-6_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libsndio6.1_1.1.0-3_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libsndio7.0_1.5.0-3_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libsystemd0_215-17+deb8u7_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installGITDEBS "$GIT_DEB_REPO|libtheora0_1.1.1+dfsg.1-6_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libtinfo5_6.1+20181013-2_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installGITDEBS "$GIT_DEB_REPO|libtinfo6_6.1+20181013-2_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installGITDEBS "$GIT_DEB_REPO|libvorbis0a_1.3.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libvorbisenc2_1.3.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libvorbisfile3_1.3.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libwayland-egl1_1.16.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libwrap0_7.6.q-28_armhf.deb|lib*|3|$INSTALL_DIR/arm-linux-gnueabihf"
-	installGITDEBS "$GIT_DEB_REPO|libx11-6_1.6.7-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libx11-xcb1_1.6.7-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxau6_1.0.8-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxcb1_1.12-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxcursor1_1.2.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxdmcp6_1.1.2-3_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxext6_1.3.3-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxfixes3_5.0.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxi6_1.7.9-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxinerama1_1.1.4-2_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxrandr2_1.5.1-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxrender1_0.9.10-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxss1_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxtst6_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
-	installGITDEBS "$GIT_DEB_REPO|libxxf86vm1_1.1.4-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libbsd0_0.7.0-2_armhf.deb|lib*|2|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libcaca0_0.99.beta19-2.1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libdirectfb-1.2-9_1.2.10.0-8+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libfaad2_2.8.8-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libflac8_1.3.2-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libfluidsynth1_1.1.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libice6_1.0.9-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libjpeg62_6b2-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|liblz4-1_1.9.1-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libmad0_0.15.1b-8+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libmpeg2-4_0.5.1-8_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libogg0_1.3.2-1+b1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libpng12-0_1.2.50-2+deb8u3_armhf.deb|lib*|2|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libpulse0_10.0-1+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libreadline6_6.3-8+b3_armhf.deb|lib*|2|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libsdl1.2debian_1.2.15-10+b1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libsm6_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libsndfile1_1.0.28-6_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libsndio6.1_1.1.0-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libsndio7.0_1.5.0-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libsystemd0_215-17+deb8u7_armhf.deb|lib*|2|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libtheora0_1.1.1+dfsg.1-6_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libtinfo5_6.1+20181013-2_armhf.deb|lib*|2|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libtinfo6_6.1+20181013-2_armhf.deb|lib*|2|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libvorbis0a_1.3.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libvorbisenc2_1.3.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libvorbisfile3_1.3.6-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libwayland-egl1_1.16.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libwrap0_7.6.q-28_armhf.deb|lib*|2|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libx11-6_1.6.7-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libx11-xcb1_1.6.7-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxau6_1.0.8-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxcb1_1.12-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxcursor1_1.2.0-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxdmcp6_1.1.2-3_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxext6_1.3.3-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxfixes3_5.0.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxi6_1.7.9-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxinerama1_1.1.4-2_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxrandr2_1.5.1-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxrender1_0.9.10-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxss1_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxtst6_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libxxf86vm1_1.1.4-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
 		
 	if [ "$DELETE_JUNK" = "TRUE" ];
 	then
 		echo "Deleting junk..."
-		rm -rf $INSTALL_DIR/bug
-		rm -rf $INSTALL_DIR/doc
-		rm -rf $INSTALL_DIR/lintian
-		rm -rf $INSTALL_DIR/menu
-		rm -rf $INSTALL_DIR/arm-linux-gnueabihf/doc
-		rm -rf $INSTALL_DIR/arm-linux-gnueabihf/doc-base
-		
+		for JUNK_FILE in "bug" "doc" "lib" "lintian" "menu" "share";
+		do
+			rm -rf "$INSTALL_DIR/$JUNK_FILE"
+		done
 	fi
-	
+
 	if [ "$ENGINE_DATA" = "TRUE" ];
 	then
 		for ENGINE_FILE in "access.dat" "cryo.dat" "drascula.dat" "hugo.dat" "kyra.dat" "lure.dat" "macventure.dat" "mort.dat" "teenagent.dat" "titanic.dat" "tony.dat" "toon.dat";
 		do
 			echo "Downloading engine data --> $ENGINE_FILE"
-			curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/$ENGINE_FILE" -o "$INSTALL_DIR/$ENGINE_FILE"
+			${CURL} -L "$GITHUB_REPO/$ENGINE_FILE" -o "$INSTALL_DIR/$ENGINE_FILE"
 		done
 	fi
 	
 	if [ "$DEFAULT_THEME" = "TRUE" ];
 	then
 		echo "Downloading --> SCUMM Modern theme"
-		curl $SSL_SECURITY_OPTION $CURL_RETRY -L "$GITHUB_REPO/scummmodern.zip" -o "$INSTALL_DIR/scummmodern.zip"
+		${CURL} -L "$GITHUB_REPO/scummmodern.zip" -o "$INSTALL_DIR/scummmodern.zip"
 	fi
 	
 	if [ "$CREATE_DIRS" = "TRUE" ];
