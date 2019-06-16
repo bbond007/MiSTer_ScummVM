@@ -215,7 +215,7 @@ then
 		for ENGINE_FILE in "access.dat" "cryo.dat" "drascula.dat" "hugo.dat" "kyra.dat" "lure.dat" "macventure.dat" "mort.dat" "teenagent.dat" "titanic.dat" "tony.dat" "toon.dat";
 		do
 			echo "Downloading engine data --> $ENGINE_FILE"
-			${CURL} -L "$GITHUB_REPO/$ENGINE_FILE" -o "$INSTALL_DIR/$ENGINE_FILE"
+			${CURL} -L "$GITHUB_REPO/engine-data/$ENGINE_FILE" -o "$INSTALL_DIR/$ENGINE_FILE"
 		done
 	fi
 	
