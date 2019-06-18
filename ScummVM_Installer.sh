@@ -23,7 +23,9 @@ SCRIPTS_DIR=/media/fat/Scripts
 GITHUB_REPO=https://github.com/bbond007/MiSTer_ScummVM/raw/master
 GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"
 DEB_SCUMMVM17=FALSE
-BBOND007_SCUMMVM20=TRUE
+BBOND007_SCUMMVM20=FALSE
+BBOND007_SCUMMVM21=TRUE
+BBOND007_SCUMMVM21_UNSTABLE=FALSE
 ENGINE_DATA=TRUE
 CREATE_DIRS=TRUE
 DEFAULT_THEME=FALSE
@@ -153,6 +155,18 @@ then
 		${CURL} -L "$GITHUB_REPO/scummvm20" -o "$INSTALL_DIR/scummvm20"
 	fi
 	
+	if [ "$BBOND007_SCUMMVM21" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_1_0..."
+		${CURL} -L "$GITHUB_REPO/scummvm21" -o "$INSTALL_DIR/scummvm21"		
+	fi
+	
+	if [ "$BBOND007_SCUMMVM21_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_1_0_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm21-unstable" -o "$INSTALL_DIR/scummvm21-unstable"
+	fi
+	
 	${CURL} -L "$GITHUB_REPO/ScummVM_2_0_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_0_0.sh"
 
 	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
@@ -222,7 +236,14 @@ then
 	if [ "$DEFAULT_THEME" = "TRUE" ];
 	then
 		echo "Downloading --> SCUMM Modern theme"
-		${CURL} -L "$GITHUB_REPO/scummmodern.zip" -o "$INSTALL_DIR/scummmodern.zip"
+		if [ "$BBOND007_SCUMMVM20" = "TRUE" ];
+		then
+			${CURL} -L "$GITHUB_REPO/scummmodern20.zip" -o "$INSTALL_DIR/scummmodern.zip"
+		fi
+		if [ "$BBOND007_SCUMMVM21" = "TRUE" ] || [ "$BBOND007_SCUMMVM21_UNSTABLE" = "TRUE" ];
+		then
+			${CURL} -L "$GITHUB_REPO/scummmodern21.zip" -o "$INSTALL_DIR/scummmodern.zip"
+		fi
 	fi
 	
 	if [ "$CREATE_DIRS" = "TRUE" ];
