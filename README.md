@@ -36,6 +36,7 @@ Scummvm_2_0_0 and Scummvm_2_1_0 supported engines:
       AGI
       AGOS [all games]
       Beavis and Butthead in Virtual Stupidity
+	  Blade Runner (*** ScummVM_2_1_0 only ***)
       CGE
       CGE2
       Cinematique evo 1
@@ -87,7 +88,6 @@ Scummvm_2_0_0 and Scummvm_2_1_0 supported engines:
 Scummvm_2_1_0_Unstable additional supported (unstable) engines:
 
       Lord Avalot d'Argent
-	  Blade Runner
 	  Chewy: Esc from F5
 	  Lost Eden
 	  Cryo Omni3D games
