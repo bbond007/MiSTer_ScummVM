@@ -17,24 +17,24 @@
 # Alessandro "Locutus73" Miele
 #------------------------------------------------------------------------------
 
-ALLOW_INSECURE_SSL=TRUE
-INSTALL_DIR=/media/fat/ScummVM
-SCRIPTS_DIR=/media/fat/Scripts
-GITHUB_REPO=https://github.com/bbond007/MiSTer_ScummVM/raw/master
-GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"
-DEB_SCUMMVM17=FALSE
-BBOND007_SCUMMVM20=FALSE
-BBOND007_SCUMMVM21=TRUE
-BBOND007_SCUMMVM21_UNSTABLE=FALSE
-ENGINE_DATA=TRUE
-CREATE_DIRS=TRUE
-DEFAULT_THEME=FALSE
-INTERNET_CHECK=https://github.com
-VERBOSE_MODE=FALSE
+if [ -z "$ALLOW_INSECURE_SSL" ];          then ALLOW_INSECURE_SSL="TRUE"; fi
+if [ -z "$INSTALL_DIR" ];                 then INSTALL_DIR="/media/fat/ScummVM"; fi
+if [ -z "$SCRIPTS_DIR" ];                 then SCRIPTS_DIR="/media/fat/Scripts"; fi
+if [ -z "$GITHUB_REPO" ];                 then GITHUB_REPO="https://github.com/bbond007/MiSTer_ScummVM/raw/master"; fi
+if [ -z "$GITHUB_DEB_REPO" ];             then GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"; fi
+if [ -z "$DEB_SCUMM" ];                   then DEB_SCUMMVM17="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM20" ];          then BBOND007_SCUMMVM20="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM21" ];          then BBOND007_SCUMMVM21="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ]; then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
+if [ -z "$ENGINE_DATA" ];                 then ENGINE_DATA="TRUE"; fi
+if [ -z "$CREATE_DIRS" ];                 then CREATE_DIRS="TRUE"; fi
+if [ -z "$DEFAULT_THEME" ];               then DEFAULT_THEME="FALSE"; fi
+if [ -z "$INTERNET_CHECK" ];              then INTERNET_CHECK="https://github.com"; fi
+if [ -z "$VERBOSE_MODE" ];                then VERBOSE_MODE="FALSE"; fi
 
 #These options probably should not be changed...
-DELETE_JUNK=TRUE
-DO_INSTALL=TRUE
+if [ -z "$DELETE_JUNK" ];                 then DELETE_JUNK="TRUE"; fi
+if [ -z "$DO_INSTALL" ];                  then DO_INSTALL="TRUE"; fi
 
 #------------------------------------------------------------------------------
 function setupCURL

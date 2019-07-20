@@ -3,9 +3,24 @@ ScummVM installer and 2.0.0 build for the MiSTer platform.
 
 Install instructions:
      
-      Run ScummVM_Installer.sh
+      Run Install_ScummVM.sh
+	  Install options can be set in Install_ScummVM.ini
+	  
+Install_ScummVM.INI (options)
 
-These settings give me the best result on both my monitor which is a Dell SR2320L 
+      INSTALL_DIR="/media/fat/ScummVM"        (Location for ScummVM bin and libs) 
+      SCRIPTS_DIR="/media/fat/Scripts"        (Location for ScummVM launcher scripts) 
+      DEB_SCUMMVM17="FALSE"                   (TRUE to Install Debian ScummVM 1.7)
+      BBOND007_SCUMMVM20="FALSE"              (TRUE to Install older ScummVM 2.0)
+      BBOND007_SCUMMVM21="TRUE"               (TRUE to Install ScummVM 2.1)
+      BBOND007_SCUMMVM21_UNSTABLE="FALSE"     (TRUE to Install ScummVM 2.1 with work-in-progress game engines enabled)
+      ENGINE_DATA="TRUE"                      (TRUE to Install engine data files)
+      CREATE_DIRS="TRUE"                      (TRUE to Create "GAMES" dir)
+      DEFAULT_THEME="FALSE"                   (TRUE to istall default theme)
+      INTERNET_CHECK="https://github.com"     (URL for internet connectivity test)
+      VERBOSE_MODE="FALSE"                    (TRUE for Verbose mode for debugging issues)
+	  
+These settings give me the best result on both my monitor (which is a Dell SR2320L - 
 (native 1920x1080) connected via VGA and my Elgato HD60s connected via HDMI. 
 
 Suggested settings for full-screen video:
@@ -16,7 +31,7 @@ MiSTer.INI:
       vga_scaler=1
       video_mode=6
 
-ScummVM_2_0_0.sh:
+ScummVM_2_1_0.sh:
 
       echo "Setting Video mode..."
       vmode -r 640 480 rgb16
