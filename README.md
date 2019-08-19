@@ -4,9 +4,9 @@ ScummVM installer and 2.0.0 build for the MiSTer platform.
 Install instructions:
      
       Run Install_ScummVM.sh
-	  Install options can be set in ScummVM_Installer.ini
+	  Install options can be set in Install_ScummVM.ini 
 	  
-ScummVM_Installer.ini (options)
+Install_ScummVM.ini (options)
 
       INSTALL_DIR="/media/fat/ScummVM"        (Location for ScummVM bin and libs) 
       SCRIPTS_DIR="/media/fat/Scripts"        (Location for ScummVM launcher scripts) 
