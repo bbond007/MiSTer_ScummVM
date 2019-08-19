@@ -10,15 +10,15 @@ Install_ScummVM.ini (options)
 
       INSTALL_DIR="/media/fat/ScummVM"        (Location for ScummVM bin and libs) 
       SCRIPTS_DIR="/media/fat/Scripts"        (Location for ScummVM launcher scripts) 
-      DEB_SCUMMVM17="FALSE"                   (TRUE to Install Debian ScummVM 1.7)
-      BBOND007_SCUMMVM20="FALSE"              (TRUE to Install older ScummVM 2.0)
-      BBOND007_SCUMMVM21="TRUE"               (TRUE to Install ScummVM 2.1)
-      BBOND007_SCUMMVM21_UNSTABLE="FALSE"     (TRUE to Install ScummVM 2.1 with work-in-progress game engines enabled)
-      ENGINE_DATA="TRUE"                      (TRUE to Install engine data files)
+      DEB_SCUMMVM17="FALSE"                   (TRUE to install Debian ScummVM 1.7)
+      BBOND007_SCUMMVM20="FALSE"              (TRUE to install older ScummVM 2.0)
+      BBOND007_SCUMMVM21="TRUE"               (TRUE to install ScummVM 2.1)
+      BBOND007_SCUMMVM21_UNSTABLE="FALSE"     (TRUE to install ScummVM 2.1 with work-in-progress game engines enabled)
+      ENGINE_DATA="TRUE"                      (TRUE to install engine data files)
       CREATE_DIRS="TRUE"                      (TRUE to Create "GAMES" dir)
-      DEFAULT_THEME="FALSE"                   (TRUE to istall default theme)
+      DEFAULT_THEME="FALSE"                   (TRUE to install default theme)
       INTERNET_CHECK="https://github.com"     (URL for internet connectivity test)
-      VERBOSE_MODE="FALSE"                    (TRUE for Verbose mode for debugging issues)
+      VERBOSE_MODE="FALSE"                    (TRUE for verbose mode for debugging issues)
 	  
 These settings give me the best result on both my monitor (which is a Dell SR2320L - 
 (native 1920x1080) connected via VGA and my Elgato HD60s connected via HDMI. 
