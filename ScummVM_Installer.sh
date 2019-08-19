@@ -17,6 +17,27 @@
 # Alessandro "Locutus73" Miele
 #------------------------------------------------------------------------------
 
+#------------------------------------------------------------------------------
+# get the name of the script, or of the parent script if called through a 'curl ... | bash -'
+ORIGINAL_SCRIPT_PATH="${0}"
+[[ "${ORIGINAL_SCRIPT_PATH}" == "bash" ]] && \
+	ORIGINAL_SCRIPT_PATH="$(ps -o comm,pid | awk -v PPID=${PPID} '$2 == PPID {print $1}')"
+
+# ini file can contain user defined variables (as bash commands)
+# Load and execute the content of the ini file, if there is one
+INI_PATH="${ORIGINAL_SCRIPT_PATH%.*}.ini"
+if [[ -f "${INI_PATH}" ]] ; then
+	echo "$INI_PATH found :)"
+	TMP=$(mktemp)
+	# preventively eliminate DOS-specific format and exit command  
+	dos2unix < "${INI_PATH}" 2> /dev/null | grep -v "^exit" > ${TMP}
+	source ${TMP}
+	rm -f ${TMP}
+else
+	echo "$INI_PATH not found..."
+fi
+
+#------------------------------------------------------------------------------
 if [ -z "$ALLOW_INSECURE_SSL" ];          then ALLOW_INSECURE_SSL="TRUE"; fi
 if [ -z "$INSTALL_DIR" ];                 then INSTALL_DIR="/media/fat/ScummVM"; fi
 if [ -z "$SCRIPTS_DIR" ];                 then SCRIPTS_DIR="/media/fat/Scripts"; fi

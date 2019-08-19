@@ -39,26 +39,6 @@ ALLOW_INSECURE_SSL="TRUE"
 
 CURL_RETRY="--connect-timeout 15 --max-time 120 --retry 3 --retry-delay 5"
 
-# ========= CODE STARTS HERE =========
-# get the name of the script, or of the parent script if called through a 'curl ... | bash -'
-ORIGINAL_SCRIPT_PATH="${0}"
-[[ "${ORIGINAL_SCRIPT_PATH}" == "bash" ]] && \
-	ORIGINAL_SCRIPT_PATH="$(ps -o comm,pid | awk -v PPID=${PPID} '$2 == PPID {print $1}')"
-
-# ini file can contain user defined variables (as bash commands)
-# Load and execute the content of the ini file, if there is one
-INI_PATH="${ORIGINAL_SCRIPT_PATH%.*}.ini"
-if [[ -f "${INI_PATH}" ]] ; then
-	echo "$INI_PATH found :)"
-	TMP=$(mktemp)
-	# preventively eliminate DOS-specific format and exit command  
-	dos2unix < "${INI_PATH}" 2> /dev/null | grep -v "^exit" > ${TMP}
-	source ${TMP}
-	rm -f ${TMP}
-else
-	echo "$INI_PATH not found..."
-fi
-
 # test network and https by pinging the most available website 
 SSL_SECURITY_OPTION=""
 curl ${CURL_RETRY} --silent https://github.com > /dev/null 2>&1
