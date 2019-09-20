@@ -15,7 +15,7 @@ Install_ScummVM.ini (options)
       BBOND007_SCUMMVM21="TRUE"               (TRUE to install ScummVM 2.1)
       BBOND007_SCUMMVM21_UNSTABLE="FALSE"     (TRUE to install ScummVM 2.1 with work-in-progress game engines enabled)
       ENGINE_DATA="TRUE"                      (TRUE to install engine data files)
-      CREATE_DIRS="TRUE"                      (TRUE to Create "GAMES" dir)
+      CREATE_DIRS="TRUE"                      (TRUE to create "GAMES" dir)
       DEFAULT_THEME="FALSE"                   (TRUE to install default theme)
       INTERNET_CHECK="https://github.com"     (URL for internet connectivity test)
       VERBOSE_MODE="FALSE"                    (TRUE for verbose mode for debugging issues)
@@ -43,20 +43,24 @@ ScummVM/Options:
       [X] Aspect ratio correction
       [ ] Fullscreen mode
 
-Scummvm_2_0_0 and Scummvm_2_1_0 supported engines:
+ScummVM source used for build:
+       
+	   https://github.com/bbond007/scummvm
 
-      SCUMM [all games]
+Scummvm_2_1_0 supported engines:
+
       Access
       ADL
       AGI
       AGOS [all games]
       Beavis and Butthead in Virtual Stupidity
-	  Blade Runner (*** ScummVM_2_1_0 only ***)
+      Blade Runner
       CGE
       CGE2
       Cinematique evo 1
       Magic Composer
       Cinematique evo 2
+      Cryo Omni3D games [all games]
       Dragon History
       Drascula: The Vampire Strikes Back
       Dreamweb
@@ -64,66 +68,66 @@ Scummvm_2_0_0 and Scummvm_2_1_0 supported engines:
       UFOs
       Gobli*ns
       Groovie [7th Guest]
+      Hyperspace Delivery Boy!
       Hopkins FBI
       Hugo Trilogy
-	  Illusions Engine (*** ScummVM_2_1_0 only ***)
-	  Kyra [all games]
-	  Labyrinth of Time
-	  Lure of the Temptress
-	  MADE
-	  MADS
-	  Mohawk [Living Books] [Myst] [Riven: The Sequel to Myst]
-	  Mortevielle
-	  Neverhood
-	  Parallaction
-	  The Journeyman Project: Pegasus Prime
-	  Plumbers Don't Wear Ties
-	  Flight of the Amazon Queen
-	  SAGA [ITE] [IHNM]
-	  SCI [all games]
-	  The Lost Files of Sherlock Holmes
-	  Beneath a Steel Sky
-	  Broken Sword
-	  Broken Sword II
-	  Broken Sword 2.5
-	  Teen Agent
-	  Tinsel
-	  Starship Titanic
-	  3 Skulls of the Toltecs
-	  Tony Tough and the Night of Roasted Moths
-	  Toonstruck
-	  Touche: The Adventures of the Fifth Musketeer
-	  TsAGE
-	  Bud Tucker in Double Trouble
-	  Voyeur
-	  Wintermute
-	  World of Xeen (*** ScummVM_2_1_0 only ***)
-	  Z-Vision
+      Illusions Engine
+      Kyra [all games]
+      Labyrinth of Time
+      Lure of the Temptress
+      MADE
+      MADS
+      Mohawk [Living Books] [Myst] [Riven: The Sequel to Myst]
+      Mortevielle
+      Neverhood
+      Parallaction
+      The Journeyman Project: Pegasus Prime
+      Plumbers Don't Wear Ties
+      The Prince and The Coward
+      Flight of the Amazon Queen
+      SAGA [ITE] [IHNM]
+      SCI [all games]
+      The Lost Files of Sherlock Holmes
+      Beneath a Steel Sky
+      Mission Supernova
+      Broken Sword
+      Broken Sword II
+      Broken Sword 2.5
+      Teen Agent
+      Tinsel
+      Starship Titanic
+      3 Skulls of the Toltecs
+      Tony Tough and the Night of Roasted Moths
+      Toonstruck
+      Touche: The Adventures of the Fifth Musketeer
+      TsAGE
+      Bud Tucker in Double Trouble
+      Voyeur
+      Wintermute
+      World of Xeen
+      Z-Vision
 
 Scummvm_2_1_0_Unstable additional supported (unstable) engines:
 
       Lord Avalot d'Argent
-	  Chewy: Esc from F5
-	  Lost Eden
-	  Cryo Omni3D games
-	  Macromedia Director
-	  Dungeon Master
-	  ScummGlk Interactive Fiction games
-	  Groovie [Groovie 2 games]
-	  The Last Express
-	  Lilliput
-	  MacVenture
-	  Mohawk [Where in Time is Carmen Sandiego?]
-	  Mutation of JB
-	  Pink Panther
-	  The Prince and The Coward
-	  SAGA [SAGA 2 games]
-	  Sludge
-	  Star Trek 25th Anniversary/Judgment Rites
-	  Mission Supernova
-	  TestBed: the Testing framework
-	  WAGE
-  	  
+      Chewy: Esc from F5
+      Lost Eden
+      Macromedia Director
+      Dungeon Master
+      ScummGlk Interactive Fiction games
+      Groovie [Groovie 2 games]
+      The Last Express
+      Lilliput
+      MacVenture
+      Mohawk [Where in Time is Carmen Sandiego?]
+      Mutation of JB
+      Pink Panther
+      SAGA [SAGA 2 games]
+      Sludge
+      Star Trek 25th Anniversary/Judgment Rites
+      TestBed: the Testing framework
+      WAGE
+  
 ScummVM supported games --> https://wiki.scummvm.org/index.php/Category:Supported_Games
 
 ScummVM compatibility --> https://www.scummvm.org/compatibility/
