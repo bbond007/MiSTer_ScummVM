@@ -195,7 +195,7 @@ then
 	
 	if [ "$BBOND007_SCUMMVM22" = "TRUE" ];
 	then
-		echo "Downloading --> BBond007_ScummVM_2_1_0..."
+		echo "Downloading --> BBond007_ScummVM_2_2_0..."
 		${CURL} -L "$GITHUB_REPO/scummvm22" -o "$INSTALL_DIR/scummvm22"		
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_2_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_2_0.sh"
 	fi
