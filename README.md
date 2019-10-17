@@ -1,5 +1,5 @@
 # MiSTer_ScummVM
-ScummVM installer and 2.0.0 build for the MiSTer platform.
+ScummVM installer and 2.2.0 build for the MiSTer platform.
 
 Install instructions:
      
@@ -12,8 +12,10 @@ Install_ScummVM.ini (options)
       SCRIPTS_DIR="/media/fat/Scripts"        (Location for ScummVM launcher scripts) 
       DEB_SCUMMVM17="FALSE"                   (TRUE to install Debian ScummVM 1.7)
       BBOND007_SCUMMVM20="FALSE"              (TRUE to install older ScummVM 2.0)
-      BBOND007_SCUMMVM21="TRUE"               (TRUE to install ScummVM 2.1)
+      BBOND007_SCUMMVM21="FALSE"              (TRUE to install ScummVM 2.1)
       BBOND007_SCUMMVM21_UNSTABLE="FALSE"     (TRUE to install ScummVM 2.1 with work-in-progress game engines enabled)
+      BBOND007_SCUMMVM22="TRUE"               (TRUE to install ScummVM 2.2)
+      BBOND007_SCUMMVM22_UNSTABLE="FALSE"     (TRUE to install ScummVM 2.2 with work-in-progress game engines enabled)
       ENGINE_DATA="TRUE"                      (TRUE to install engine data files)
       CREATE_DIRS="TRUE"                      (TRUE to create "GAMES" dir)
       DEFAULT_THEME="FALSE"                   (TRUE to install default theme)
@@ -45,10 +47,11 @@ ScummVM/Options:
 
 ScummVM source used for build:
        
-	   https://github.com/bbond007/scummvm
+      https://github.com/bbond007/scummvm
+	   
+Scummvm_2_2_0 supported engines:
 
-Scummvm_2_1_0 supported engines:
-
+      SCUMM [all games]
       Access
       ADL
       AGI
@@ -77,7 +80,7 @@ Scummvm_2_1_0 supported engines:
       Lure of the Temptress
       MADE
       MADS
-      Mohawk [Living Books] [Myst] [Riven: The Sequel to Myst]
+      Mohawk [Living Books] [Myst] [Myst ME] [Riven: The Sequel to Myst]
       Mortevielle
       Neverhood
       Parallaction
@@ -107,7 +110,7 @@ Scummvm_2_1_0 supported engines:
       World of Xeen
       Z-Vision
 
-Scummvm_2_1_0_Unstable additional supported (unstable) engines:
+Scummvm_2_2_0_Unstable additional supported (unstable) engines:
 
       Lord Avalot d'Argent
       Chewy: Esc from F5
@@ -127,7 +130,7 @@ Scummvm_2_1_0_Unstable additional supported (unstable) engines:
       Star Trek 25th Anniversary/Judgment Rites
       TestBed: the Testing framework
       WAGE
-  
+
 ScummVM supported games --> https://wiki.scummvm.org/index.php/Category:Supported_Games
 
 ScummVM compatibility --> https://www.scummvm.org/compatibility/
