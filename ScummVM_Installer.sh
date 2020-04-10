@@ -256,7 +256,7 @@ then
 	if [ "$DELETE_JUNK" = "TRUE" ];
 	then
 		echo "Deleting junk..."
-		for JUNK_file in "bug" "doc" "lib" "lintian" "menu" "share";
+		for JUNK_FILE in "bug" "doc" "lib" "lintian" "menu" "share";
 		do
 			rm -rf "$INSTALL_DIR/$JUNK_FILE"
 		done
