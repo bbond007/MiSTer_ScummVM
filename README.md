@@ -44,11 +44,23 @@ ScummVM/Options:
       Render Mode: <default>
       [X] Aspect ratio correction
       [ ] Fullscreen mode
+	   
+ScummVM Links:
+       
+Homepage --> https://www.scummvm.org/
+
+Github --> https://github.com/scummvm/scummvm
+
+ScummVM supported games --> https://wiki.scummvm.org/index.php/Category:Supported_Games
+
+ScummVM compatibility --> https://www.scummvm.org/compatibility/
+
+Wikipedia --> https://en.wikipedia.org/wiki/ScummVM
 
 ScummVM source used for build:
        
       https://github.com/bbond007/scummvm
-	   
+      
 Scummvm_2_2_0 supported engines:
 
       SCUMM [all games]
@@ -106,7 +118,7 @@ Scummvm_2_2_0 supported engines:
       TsAGE
       Bud Tucker in Double Trouble
       Voyeur
-      Wintermute
+      Wintermute [all games]
       World of Xeen
       Z-Vision
 
@@ -117,7 +129,9 @@ Scummvm_2_2_0_Unstable additional supported (unstable) engines:
       Lost Eden
       Macromedia Director
       Dungeon Master
-      ScummGlk Interactive Fiction games
+      Blazing Dragons
+      Glk Interactive Fiction games
+      The Griffon Legend
       Groovie [Groovie 2 games]
       The Last Express
       Lilliput
@@ -129,11 +143,8 @@ Scummvm_2_2_0_Unstable additional supported (unstable) engines:
       Sludge
       Star Trek 25th Anniversary/Judgment Rites
       TestBed: the Testing framework
+      Ultima
       WAGE
-
-ScummVM supported games --> https://wiki.scummvm.org/index.php/Category:Supported_Games
-
-ScummVM compatibility --> https://www.scummvm.org/compatibility/
 
 Videos of ScummVM running on my MiSTer:
 
