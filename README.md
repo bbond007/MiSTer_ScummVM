@@ -48,9 +48,13 @@ ScummVM/Options:
 ScummVM Links:
        
 Homepage --> https://www.scummvm.org/
+
 Github --> https://github.com/scummvm/scummvm
+
 ScummVM supported games --> https://wiki.scummvm.org/index.php/Category:Supported_Games
+
 ScummVM compatibility --> https://www.scummvm.org/compatibility/
+
 Wikipedia --> https://en.wikipedia.org/wiki/ScummVM
 
 ScummVM source used for build:
