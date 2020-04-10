@@ -200,7 +200,7 @@ then
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_2_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_2_0.sh"
 	fi
 	
-	if [ "$BBOND007_SCUMMVM21_UNSTABLE" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM22_UNSTABLE" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_2_0_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm22-unstable" -o "$INSTALL_DIR/scummvm22-unstable"
