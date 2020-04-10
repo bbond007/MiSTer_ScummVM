@@ -256,7 +256,7 @@ then
 	if [ "$DELETE_JUNK" = "TRUE" ];
 	then
 		echo "Deleting junk..."
-		for JUNK_FILE in "bug" "doc" "lib" "lintian" "menu" "share";
+		for JUNK_file in "bug" "doc" "lib" "lintian" "menu" "share";
 		do
 			rm -rf "$INSTALL_DIR/$JUNK_FILE"
 		done
@@ -264,7 +264,7 @@ then
 
 	if [ "$ENGINE_DATA" = "TRUE" ];
 	then
-		for ENGINE_FILE in "access.dat" "cryo.dat" "drascula.dat" "hugo.dat" "kyra.dat" "lure.dat" "macventure.dat" "mort.dat" "teenagent.dat" "titanic.dat" "tony.dat" "toon.dat";
+		for ENGINE_FILE in "access.dat" "cryo.dat" "cryomni3d.dat" "drascula.dat" "fonts.dat" "hugo.dat" "kyra.dat" "lure.dat" "macventure.dat" "mort.dat" "prince_translation.dat" "supernova.dat" "teenagent.dat" "titanic.dat" "tony.dat" "toon.dat" "ultima.dat";
 		do
 			echo "Downloading engine data --> $ENGINE_FILE"
 			${CURL} -L "$GITHUB_REPO/engine-data/$ENGINE_FILE" -o "$INSTALL_DIR/$ENGINE_FILE"
