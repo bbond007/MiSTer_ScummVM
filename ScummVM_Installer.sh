@@ -210,6 +210,7 @@ then
 	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libbsd0_0.7.0-2_armhf.deb|lib*|2|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libcaca0_0.99.beta19-2.1_armhf.deb|lib*|3|$INSTALL_DIR"
+	installGithubDEBS "$GITHUB_DEB_REPO|libdb5.3_5.3.28-12+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libdirectfb-1.2-9_1.2.10.0-8+deb9u1_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libfaad2_2.8.8-3_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libflac8_1.3.2-3_armhf.deb|lib*|3|$INSTALL_DIR"
