@@ -47,8 +47,10 @@ if [ -z "$DEB_SCUMM" ];                   then DEB_SCUMMVM17="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM20" ];          then BBOND007_SCUMMVM20="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM21" ];          then BBOND007_SCUMMVM21="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ]; then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM22" ];          then BBOND007_SCUMMVM22="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM22" ];          then BBOND007_SCUMMVM22="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ]; then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM23" ];          then BBOND007_SCUMMVM23="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ]; then BBOND007_SCUMMVM23_UNSTABLE="FALSE"; fi
 if [ -z "$ENGINE_DATA" ];                 then ENGINE_DATA="TRUE"; fi
 if [ -z "$CREATE_DIRS" ];                 then CREATE_DIRS="TRUE"; fi
 if [ -z "$DEFAULT_THEME" ];               then DEFAULT_THEME="FALSE"; fi
@@ -207,6 +209,20 @@ then
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_2_0_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_2_0_Unstable.sh"
 	fi
 	
+	if [ "$BBOND007_SCUMMVM23" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_3..."
+		${CURL} -L "$GITHUB_REPO/scummvm23" -o "$INSTALL_DIR/scummvm23"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_3.sh" -o "$SCRIPTS_DIR/ScummVM_2_3.sh"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM23_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_3_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm23-unstable" -o "$INSTALL_DIR/scummvm23-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_3_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_3_Unstable.sh"
+	fi
+	
 	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libbsd0_0.7.0-2_armhf.deb|lib*|2|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libcaca0_0.99.beta19-2.1_armhf.deb|lib*|3|$INSTALL_DIR"
@@ -286,6 +302,10 @@ then
 		if [ "$BBOND007_SCUMMVM22" = "TRUE" ] || [ "$BBOND007_SCUMMVM22_UNSTABLE" = "TRUE" ];
 		then
 			${CURL} -L "$GITHUB_REPO/scummmodern22.zip" -o "$INSTALL_DIR/scummmodern.zip"
+		fi
+		if [ "$BBOND007_SCUMMVM23" = "TRUE" ] || [ "$BBOND007_SCUMMVM23_UNSTABLE" = "TRUE" ];
+		then
+			${CURL} -L "$GITHUB_REPO/scummmodern23.zip" -o "$INSTALL_DIR/scummmodern.zip"
 		fi
 	fi
 	
