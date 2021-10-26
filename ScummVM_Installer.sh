@@ -51,6 +51,8 @@ if [ -z "$BBOND007_SCUMMVM22" ];          then BBOND007_SCUMMVM22="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ]; then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM23" ];          then BBOND007_SCUMMVM23="TRUE"; fi
 if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ]; then BBOND007_SCUMMVM23_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM25" ];          then BBOND007_SCUMMVM25="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM25_UNSTABLE" ]; then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
 if [ -z "$ENGINE_DATA" ];                 then ENGINE_DATA="TRUE"; fi
 if [ -z "$CREATE_DIRS" ];                 then CREATE_DIRS="TRUE"; fi
 if [ -z "$DEFAULT_THEME" ];               then DEFAULT_THEME="FALSE"; fi
@@ -223,6 +225,20 @@ then
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_3_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_3_Unstable.sh"
 	fi
 	
+	if [ "$BBOND007_SCUMMVM25" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_5..."
+		${CURL} -L "$GITHUB_REPO/scummvm25" -o "$INSTALL_DIR/scummvm25"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_5.sh" -o "$SCRIPTS_DIR/ScummVM_2_5.sh"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM25UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_5Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm25-unstable" -o "$INSTALL_DIR/scummvm25-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_5_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_5_Unstable.sh"
+	fi
+	
 	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libbsd0_0.7.0-2_armhf.deb|lib*|2|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libcaca0_0.99.beta19-2.1_armhf.deb|lib*|3|$INSTALL_DIR"
@@ -306,6 +322,10 @@ then
 		if [ "$BBOND007_SCUMMVM23" = "TRUE" ] || [ "$BBOND007_SCUMMVM23_UNSTABLE" = "TRUE" ];
 		then
 			${CURL} -L "$GITHUB_REPO/scummmodern23.zip" -o "$INSTALL_DIR/scummmodern.zip"
+		fi
+		if [ "$BBOND007_SCUMMVM25" = "TRUE" ] || [ "$BBOND007_SCUMMVM25_UNSTABLE" = "TRUE" ];
+		then
+			${CURL} -L "$GITHUB_REPO/scummmodern25.zip" -o "$INSTALL_DIR/scummmodern.zip"
 		fi
 	fi
 	

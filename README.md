@@ -1,5 +1,5 @@
 # MiSTer_ScummVM
-ScummVM installer and 2.2.0 build for the MiSTer platform.
+ScummVM installer and build for the MiSTer platform.
 
 Install instructions:
      
