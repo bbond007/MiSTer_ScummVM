@@ -181,6 +181,7 @@ then
 		echo "Downloading --> BBond007_ScummVM_2_0_0..."
 		${CURL} -L "$GITHUB_REPO/scummvm20" -o "$INSTALL_DIR/scummvm20"
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_0_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_0_0.sh"
+		THEME_FILE_MOD="scummmodern20.zip"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM21" = "TRUE" ];
@@ -188,6 +189,7 @@ then
 		echo "Downloading --> BBond007_ScummVM_2_1_0..."
 		${CURL} -L "$GITHUB_REPO/scummvm21" -o "$INSTALL_DIR/scummvm21"		
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_1_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_1_0.sh"
+		THEME_FILE_MOD="scummmodern21.zip"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM21_UNSTABLE" = "TRUE" ];
@@ -195,6 +197,8 @@ then
 		echo "Downloading --> BBond007_ScummVM_2_1_0_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm21-unstable" -o "$INSTALL_DIR/scummvm21-unstable"
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_1_0_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_1_0_Unstable.sh"
+		THEME_FILE_MOD="scummmodern21.zip"
+		THEME_FILE_REM="scummremastered21.zip"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM22" = "TRUE" ];
@@ -202,6 +206,9 @@ then
 		echo "Downloading --> BBond007_ScummVM_2_2_0..."
 		${CURL} -L "$GITHUB_REPO/scummvm22" -o "$INSTALL_DIR/scummvm22"		
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_2_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_2_0.sh"
+		THEME_FILE_MOD="scummmodern22.zip"
+		THEME_FILE_REM="scummremastered22.zip"
+		ENGINE_DIR="22"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM22_UNSTABLE" = "TRUE" ];
@@ -209,6 +216,9 @@ then
 		echo "Downloading --> BBond007_ScummVM_2_2_0_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm22-unstable" -o "$INSTALL_DIR/scummvm22-unstable"
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_2_0_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_2_0_Unstable.sh"
+		THEME_FILE_MOD="scummmodern22.zip"
+		THEME_FILE_REM="scummremastered22.zip"
+		ENGINE_DIR="22"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM23" = "TRUE" ];
@@ -216,6 +226,9 @@ then
 		echo "Downloading --> BBond007_ScummVM_2_3..."
 		${CURL} -L "$GITHUB_REPO/scummvm23" -o "$INSTALL_DIR/scummvm23"		
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_3.sh" -o "$SCRIPTS_DIR/ScummVM_2_3.sh"
+		THEME_FILE_MOD="scummmodern23.zip"
+		THEME_FILE_REM="scummremastered23.zip"
+		ENGINE_DIR="23"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM23_UNSTABLE" = "TRUE" ];
@@ -223,6 +236,9 @@ then
 		echo "Downloading --> BBond007_ScummVM_2_3_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm23-unstable" -o "$INSTALL_DIR/scummvm23-unstable"
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_3_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_3_Unstable.sh"
+		THEME_FILE_MOD="scummmodern23.zip"
+		THEME_FILE_REM="scummremastered23.zip"
+		ENGINE_DIR="23"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM25" = "TRUE" ];
@@ -230,6 +246,9 @@ then
 		echo "Downloading --> BBond007_ScummVM_2_5..."
 		${CURL} -L "$GITHUB_REPO/scummvm25" -o "$INSTALL_DIR/scummvm25"		
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_5.sh" -o "$SCRIPTS_DIR/ScummVM_2_5.sh"
+		THEME_FILE_MOD="scummmodern25.zip"
+		THEME_FILE_REM="scummremastered25.zip"
+		ENGINE_DIR="25"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM25UNSTABLE" = "TRUE" ];
@@ -237,6 +256,9 @@ then
 		echo "Downloading --> BBond007_ScummVM_2_5Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm25-unstable" -o "$INSTALL_DIR/scummvm25-unstable"
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_5_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_5_Unstable.sh"
+		THEME_FILE_MOD="scummmodern25.zip"
+		THEME_FILE_REM="scummremastered25.zip"
+		ENGINE_DIR="25"
 	fi
 	
 	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
@@ -295,38 +317,25 @@ then
 		done
 	fi
 
-	if [ "$ENGINE_DATA" = "TRUE" ];
+	if [ "$ENGINE_DATA" = "TRUE" ] && [ "$ENGINE_DIR" != "" ];
 	then
 		for ENGINE_FILE in "access.dat" "cryo.dat" "cryomni3d.dat" "drascula.dat" "fonts.dat" "hugo.dat" "kyra.dat" "lure.dat" "macventure.dat" "mort.dat" "prince_translation.dat" "supernova.dat" "teenagent.dat" "titanic.dat" "tony.dat" "toon.dat" "ultima.dat";
 		do
 			echo "Downloading engine data --> $ENGINE_FILE"
-			${CURL} -L "$GITHUB_REPO/engine-data/$ENGINE_FILE" -o "$INSTALL_DIR/$ENGINE_FILE"
+			${CURL} -L "$GITHUB_REPO/engine-data/$ENGINE_DIR/$ENGINE_FILE" -o "$INSTALL_DIR/$ENGINE_FILE"
 		done
 	fi
 	
-	if [ "$DEFAULT_THEME" = "TRUE" ];
+	if [ "$DEFAULT_THEME" = "TRUE" ] && [ "$THEME_FILE_MOD" != "" ];
 	then
 		echo "Downloading --> SCUMM Modern theme"
-		if [ "$BBOND007_SCUMMVM20" = "TRUE" ];
-		then
-			${CURL} -L "$GITHUB_REPO/scummmodern20.zip" -o "$INSTALL_DIR/scummmodern.zip"
-		fi
-		if [ "$BBOND007_SCUMMVM21" = "TRUE" ] || [ "$BBOND007_SCUMMVM21_UNSTABLE" = "TRUE" ];
-		then
-			${CURL} -L "$GITHUB_REPO/scummmodern21.zip" -o "$INSTALL_DIR/scummmodern.zip"
-		fi
-		if [ "$BBOND007_SCUMMVM22" = "TRUE" ] || [ "$BBOND007_SCUMMVM22_UNSTABLE" = "TRUE" ];
-		then
-			${CURL} -L "$GITHUB_REPO/scummmodern22.zip" -o "$INSTALL_DIR/scummmodern.zip"
-		fi
-		if [ "$BBOND007_SCUMMVM23" = "TRUE" ] || [ "$BBOND007_SCUMMVM23_UNSTABLE" = "TRUE" ];
-		then
-			${CURL} -L "$GITHUB_REPO/scummmodern23.zip" -o "$INSTALL_DIR/scummmodern.zip"
-		fi
-		if [ "$BBOND007_SCUMMVM25" = "TRUE" ] || [ "$BBOND007_SCUMMVM25_UNSTABLE" = "TRUE" ];
-		then
-			${CURL} -L "$GITHUB_REPO/scummmodern25.zip" -o "$INSTALL_DIR/scummmodern.zip"
-		fi
+		${CURL} -L "$GITHUB_REPO/$THEME_FILE_MOD" -o "$INSTALL_DIR/scummmodern.zip"
+	fi
+	
+	if [ "$DEFAULT_THEME" = "TRUE" ] && [ "$THEME_FILE_REM" != "" ];
+	then
+		echo "Downloading --> SCUMM Modern theme"
+		${CURL} -L "$GITHUB_REPO/$THEME_FILE_REM" -o "$INSTALL_DIR/scummremastered.zip"
 	fi
 	
 	if [ "$CREATE_DIRS" = "TRUE" ];
