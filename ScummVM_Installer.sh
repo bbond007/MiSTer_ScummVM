@@ -317,6 +317,16 @@ then
 		done
 	fi
 
+	if [ "$VERBOSE_MODE" = "TRUE" ];
+	then
+		echo "ENGINE_DATA    --> $ENGINE_DATA"
+ 		echo "ENGINE_DIR     --> $ENGINE_DIR"
+		echo "ENGINE_DIR     --> $ENGINE_DIR"
+		echo "DEFAULT_THEME  --> $DEFAULT_THEME"
+		echo "THEME_FILE_MOD --> $THEME_FILE_MOD"
+		echo "THEME_FILE_REM --> $THEME_FILE_REM"
+	fi 
+	
 	if [ "$ENGINE_DATA" = "TRUE" ] && [ "$ENGINE_DIR" != "" ];
 	then
 		for ENGINE_FILE in "access.dat" "cryo.dat" "cryomni3d.dat" "drascula.dat" "fonts.dat" "hugo.dat" "kyra.dat" "lure.dat" "macventure.dat" "mort.dat" "prince_translation.dat" "supernova.dat" "teenagent.dat" "titanic.dat" "tony.dat" "toon.dat" "ultima.dat";
