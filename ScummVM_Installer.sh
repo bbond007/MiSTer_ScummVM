@@ -261,6 +261,26 @@ then
 		ENGINE_DIR="25"
 	fi
 	
+	if [ "$BBOND007_SCUMMVM250" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_5..."
+		${CURL} -L "$GITHUB_REPO/scummvm250" -o "$INSTALL_DIR/scummvm250"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_5_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_5_0.sh"
+		THEME_FILE_MOD="scummmodern250.zip"
+		THEME_FILE_REM="scummremastered250.zip"
+		ENGINE_DIR="250"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM250UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_5_0_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm250-unstable" -o "$INSTALL_DIR/scummvm250-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_5_0_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_5_0_Unstable.sh"
+		THEME_FILE_MOD="scummmodern250.zip"
+		THEME_FILE_REM="scummremastered250.zip"
+		ENGINE_DIR="250"
+	fi
+	
 	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libbsd0_0.7.0-2_armhf.deb|lib*|2|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libcaca0_0.99.beta19-2.1_armhf.deb|lib*|3|$INSTALL_DIR"
