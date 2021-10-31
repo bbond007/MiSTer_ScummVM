@@ -38,30 +38,32 @@ else
 fi
 
 #------------------------------------------------------------------------------
-if [ -z "$ALLOW_INSECURE_SSL" ];          then ALLOW_INSECURE_SSL="TRUE"; fi
-if [ -z "$INSTALL_DIR" ];                 then INSTALL_DIR="/media/fat/ScummVM"; fi
-if [ -z "$SCRIPTS_DIR" ];                 then SCRIPTS_DIR="/media/fat/Scripts"; fi
-if [ -z "$GITHUB_REPO" ];                 then GITHUB_REPO="https://github.com/bbond007/MiSTer_ScummVM/raw/master"; fi
-if [ -z "$GITHUB_DEB_REPO" ];             then GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"; fi
-if [ -z "$DEB_SCUMM" ];                   then DEB_SCUMMVM17="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM20" ];          then BBOND007_SCUMMVM20="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM21" ];          then BBOND007_SCUMMVM21="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ]; then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM22" ];          then BBOND007_SCUMMVM22="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ]; then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM23" ];          then BBOND007_SCUMMVM23="TRUE"; fi
-if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ]; then BBOND007_SCUMMVM23_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM25" ];          then BBOND007_SCUMMVM25="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM25_UNSTABLE" ]; then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
-if [ -z "$ENGINE_DATA" ];                 then ENGINE_DATA="TRUE"; fi
-if [ -z "$CREATE_DIRS" ];                 then CREATE_DIRS="TRUE"; fi
-if [ -z "$DEFAULT_THEME" ];               then DEFAULT_THEME="FALSE"; fi
-if [ -z "$INTERNET_CHECK" ];              then INTERNET_CHECK="https://github.com"; fi
-if [ -z "$VERBOSE_MODE" ];                then VERBOSE_MODE="FALSE"; fi
+if [ -z "$ALLOW_INSECURE_SSL" ];           then ALLOW_INSECURE_SSL="TRUE"; fi
+if [ -z "$INSTALL_DIR" ];                  then INSTALL_DIR="/media/fat/ScummVM"; fi
+if [ -z "$SCRIPTS_DIR" ];                  then SCRIPTS_DIR="/media/fat/Scripts"; fi
+if [ -z "$GITHUB_REPO" ];                  then GITHUB_REPO="https://github.com/bbond007/MiSTer_ScummVM/raw/master"; fi
+if [ -z "$GITHUB_DEB_REPO" ];              then GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"; fi
+if [ -z "$DEB_SCUMM" ];                    then DEB_SCUMMVM17="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM20" ];           then BBOND007_SCUMMVM20="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM21" ];           then BBOND007_SCUMMVM21="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ];  then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM22" ];           then BBOND007_SCUMMVM22="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ];  then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM23" ];           then BBOND007_SCUMMVM23="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ];  then BBOND007_SCUMMVM23_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM25" ];           then BBOND007_SCUMMVM25="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM25_UNSTABLE" ];  then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM250" ];          then BBOND007_SCUMMVM25="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM250_UNSTABLE" ]; then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
+if [ -z "$ENGINE_DATA" ];                  then ENGINE_DATA="TRUE"; fi
+if [ -z "$CREATE_DIRS" ];                  then CREATE_DIRS="TRUE"; fi
+if [ -z "$DEFAULT_THEME" ];                then DEFAULT_THEME="FALSE"; fi
+if [ -z "$INTERNET_CHECK" ];               then INTERNET_CHECK="https://github.com"; fi
+if [ -z "$VERBOSE_MODE" ];                 then VERBOSE_MODE="FALSE"; fi
 
 #These options probably should not be changed...
-if [ -z "$DELETE_JUNK" ];                 then DELETE_JUNK="TRUE"; fi
-if [ -z "$DO_INSTALL" ];                  then DO_INSTALL="TRUE"; fi
+if [ -z "$DELETE_LIB_DOCS" ];              then DELETE_LIB_DOCS="TRUE"; fi
+if [ -z "$DO_INSTALL" ];                   then DO_INSTALL="TRUE"; fi
 
 #------------------------------------------------------------------------------
 function setupCURL
@@ -328,7 +330,7 @@ then
 	installGithubDEBS "$GITHUB_DEB_REPO|libxtst6_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libxxf86vm1_1.1.4-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
 		
-	if [ "$DELETE_JUNK" = "TRUE" ];
+	if [ "$DELETE_LIB_DOCS" = "TRUE" ];
 	then
 		echo "Deleting junk..."
 		for JUNK_FILE in "bug" "doc" "lib" "lintian" "menu" "share";
