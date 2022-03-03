@@ -53,8 +53,10 @@ if [ -z "$BBOND007_SCUMMVM23" ];           then BBOND007_SCUMMVM23="TRUE"; fi
 if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ];  then BBOND007_SCUMMVM23_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM25" ];           then BBOND007_SCUMMVM25="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM25_UNSTABLE" ];  then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM250" ];          then BBOND007_SCUMMVM25="TRUE"; fi
-if [ -z "$BBOND007_SCUMMVM250_UNSTABLE" ]; then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM250" ];          then BBOND007_SCUMMVM250="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM250_UNSTABLE" ]; then BBOND007_SCUMMVM250_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM251" ];          then BBOND007_SCUMMVM251="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM251_UNSTABLE" ]; then BBOND007_SCUMMVM251_UNSTABLE="FALSE"; fi
 if [ -z "$ENGINE_DATA" ];                  then ENGINE_DATA="TRUE"; fi
 if [ -z "$CREATE_DIRS" ];                  then CREATE_DIRS="TRUE"; fi
 if [ -z "$DEFAULT_THEME" ];                then DEFAULT_THEME="FALSE"; fi
@@ -281,6 +283,26 @@ then
 		THEME_FILE_MOD="scummmodern250.zip"
 		THEME_FILE_REM="scummremastered250.zip"
 		ENGINE_DIR="250"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM250" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_5_1..."
+		${CURL} -L "$GITHUB_REPO/scummvm251" -o "$INSTALL_DIR/scummvm251"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_5_1.sh" -o "$SCRIPTS_DIR/ScummVM_2_5_1.sh"
+		THEME_FILE_MOD="scummmodern251.zip"
+		THEME_FILE_REM="scummremastered251.zip"
+		ENGINE_DIR="251"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM251UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_5_0_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm251-unstable" -o "$INSTALL_DIR/scummvm251-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_5_1_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_5_1_Unstable.sh"
+		THEME_FILE_MOD="scummmodern251.zip"
+		THEME_FILE_REM="scummremastered251.zip"
+		ENGINE_DIR="251"
 	fi
 	
 	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
