@@ -285,7 +285,7 @@ then
 		ENGINE_DIR="250"
 	fi
 	
-	if [ "$BBOND007_SCUMMVM250" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM251" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_5_1..."
 		${CURL} -L "$GITHUB_REPO/scummvm251" -o "$INSTALL_DIR/scummvm251"		
