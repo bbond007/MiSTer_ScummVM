@@ -11,22 +11,41 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 SCUMMVM_CPU_MASK=03
+MT32PI_CPU_MASK=03
 SCUMMVM_EXE_NAME="scummvm23-unstable"
 SCUMMVM_HOME_DIR="/media/fat/ScummVM"
 SCUMMVM_OPTIONS="--opl-driver=db --output-rate=48000"
-SCUMMVM_LIB_PATH="$SCUMMVM_HOME_DIR/arm-linux-gnueabihf:$SCUMMVM_HOME_DIR/arm-linux-gnueabihf/pulseaudio"
+SCUMMVM_LIB_PATH="${SCUMMVM_HOME_DIR}/arm-linux-gnueabihf:${SCUMMVM_HOME_DIR}/arm-linux-gnueabihf/pulseaudio"
+MT32PI_DRIVER="/media/fat/linux/MIDIMeister"
+
+# Set corename for tty2oled/i2c2oled
+echo "ScummVM" > /tmp/CORENAME
 
 echo "Setting Video mode..."
 vmode -r 640 480 rgb16
 
 echo "Setting library path..."
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$SCUMMVM_LIB_PATH"
-echo $LD_LIBRARY_PATH
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${SCUMMVM_LIB_PATH}"
+echo ${LD_LIBRARY_PATH}
 echo "Setting ScummVM HOME path..."
-export HOME="$SCUMMVM_HOME_DIR"
+export HOME="${SCUMMVM_HOME_DIR}"
 
-cd $SCUMMVM_HOME_DIR
+if [ -f "${MT32PI_DRIVER}" ]
+then
+	killall ${MT32PI_DRIVER}
+	echo "Startting MIDIMeister..."
+	taskset ${MT32PI_CPU_MASK} ${MT32PI_DRIVER} QUIET &
+fi
+
+cd ${SCUMMVM_HOME_DIR}
 echo "Starting ScummVM..."
-taskset $SCUMMVM_CPU_MASK $SCUMMVM_HOME_DIR/$SCUMMVM_EXE_NAME $SCUMMVM_OPTIONS 
+taskset ${SCUMMVM_CPU_MASK} ${SCUMMVM_HOME_DIR}/${SCUMMVM_EXE_NAME} ${SCUMMVM_OPTIONS} 
 
+if [ -f "${MT32PI_DRIVER}" ]
+then
+	echo "Killing MIDIMeister..."
+	killall ${MT32PI_DRIVER}
+fi
 
+# Set corename for tty2oled/i2c2oled
+echo "MENU" > /tmp/CORENAME
