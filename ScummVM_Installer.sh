@@ -43,6 +43,7 @@ if [ -z "$INSTALL_DIR" ];                  then INSTALL_DIR="/media/fat/ScummVM"
 if [ -z "$SCRIPTS_DIR" ];                  then SCRIPTS_DIR="/media/fat/Scripts"; fi
 if [ -z "$GITHUB_REPO" ];                  then GITHUB_REPO="https://github.com/bbond007/MiSTer_ScummVM/raw/master"; fi
 if [ -z "$GITHUB_DEB_REPO" ];              then GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"; fi
+if [ -z "$GITHUB_MIDIMIESTER_BIN" ];       then GITHUB_MIDIMIESTER_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister"; fi
 if [ -z "$DEB_SCUMM" ];                    then DEB_SCUMMVM17="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM20" ];           then BBOND007_SCUMMVM20="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM21" ];           then BBOND007_SCUMMVM21="FALSE"; fi
@@ -370,6 +371,9 @@ then
 		ENGINE_DIR="261"
 	fi
 	
+	echo "Downloading --> MIDIMeister (mt32-pi support)..."
+	${CURL} -L "$GITHUB_MIDIMIESTER_BIN" -o "/media/fat/linux/MIDIMeister"
+	
 	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libbsd0_0.7.0-2_armhf.deb|lib*|2|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libcaca0_0.99.beta19-2.1_armhf.deb|lib*|3|$INSTALL_DIR"
@@ -416,7 +420,7 @@ then
 	installGithubDEBS "$GITHUB_DEB_REPO|libxss1_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libxtst6_1.2.3-1_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libxxf86vm1_1.1.4-1+b2_armhf.deb|lib*|3|$INSTALL_DIR"
-		
+			
 	if [ "$DELETE_LIB_DOCS" = "TRUE" ];
 	then
 		echo "Deleting junk..."
