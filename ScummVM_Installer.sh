@@ -261,7 +261,7 @@ then
 		ENGINE_DIR="25"
 	fi
 	
-	if [ "$BBOND007_SCUMMVM25UNSTABLE" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM25_UNSTABLE" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_5Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm25-unstable" -o "$INSTALL_DIR/scummvm25-unstable"
@@ -281,7 +281,7 @@ then
 		ENGINE_DIR="250"
 	fi
 	
-	if [ "$BBOND007_SCUMMVM250UNSTABLE" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM250_UNSTABLE" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_5_0_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm250-unstable" -o "$INSTALL_DIR/scummvm250-unstable"
@@ -301,7 +301,7 @@ then
 		ENGINE_DIR="251"
 	fi
 	
-	if [ "$BBOND007_SCUMMVM251UNSTABLE" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM251_UNSTABLE" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_5_0_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm251-unstable" -o "$INSTALL_DIR/scummvm251-unstable"
@@ -321,7 +321,7 @@ then
 		ENGINE_DIR="26"
 	fi
 	
-	if [ "$BBOND007_SCUMMVM26UNSTABLE" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM26_UNSTABLE" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_6Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm26-unstable" -o "$INSTALL_DIR/scummvm26-unstable"
@@ -341,7 +341,7 @@ then
 		ENGINE_DIR="260"
 	fi
 	
-	if [ "$BBOND007_SCUMMVM26UNSTABLE" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM26_UNSTABLE" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_6_0_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm260-unstable" -o "$INSTALL_DIR/scummvm260-unstable"
@@ -361,7 +361,7 @@ then
 		ENGINE_DIR="261"
 	fi
 	
-	if [ "$BBOND007_SCUMMVM261UNSTABLE" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM261_UNSTABLE" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_6_0_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm261-unstable" -o "$INSTALL_DIR/scummvm261-unstable"
