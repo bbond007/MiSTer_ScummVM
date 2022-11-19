@@ -323,7 +323,7 @@ then
 	
 	if [ "$BBOND007_SCUMMVM26_UNSTABLE" = "TRUE" ];
 	then
-		echo "Downloading --> BBond007_ScummVM_2_6Unstable..."
+		echo "Downloading --> BBond007_ScummVM_2_6_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm26-unstable" -o "$INSTALL_DIR/scummvm26-unstable"
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_6_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_6_Unstable.sh"
 		THEME_FILE_MOD="scummmodern26.zip"
