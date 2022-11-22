@@ -303,7 +303,7 @@ then
 	
 	if [ "$BBOND007_SCUMMVM251_UNSTABLE" = "TRUE" ];
 	then
-		echo "Downloading --> BBond007_ScummVM_2_5_0_Unstable..."
+		echo "Downloading --> BBond007_ScummVM_2_5_1_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm251-unstable" -o "$INSTALL_DIR/scummvm251-unstable"
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_5_1_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_5_1_Unstable.sh"
 		THEME_FILE_MOD="scummmodern251.zip"
@@ -333,7 +333,7 @@ then
 	
 	if [ "$BBOND007_SCUMMVM260" = "TRUE" ];
 	then
-		echo "Downloading --> BBond007_ScummVM_2_6..."
+		echo "Downloading --> BBond007_ScummVM_2_6_0..."
 		${CURL} -L "$GITHUB_REPO/scummvm260" -o "$INSTALL_DIR/scummvm260"		
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_6_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_6_0.sh"
 		THEME_FILE_MOD="scummmodern260.zip"
@@ -363,7 +363,7 @@ then
 	
 	if [ "$BBOND007_SCUMMVM261_UNSTABLE" = "TRUE" ];
 	then
-		echo "Downloading --> BBond007_ScummVM_2_6_0_Unstable..."
+		echo "Downloading --> BBond007_ScummVM_2_6_1_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm261-unstable" -o "$INSTALL_DIR/scummvm261-unstable"
 		${CURL} -L "$GITHUB_REPO/ScummVM_2_6_1_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_6_1_Unstable.sh"
 		THEME_FILE_MOD="scummmodern261.zip"
