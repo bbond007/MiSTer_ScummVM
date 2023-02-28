@@ -43,26 +43,32 @@ if [ -z "$INSTALL_DIR" ];                  then INSTALL_DIR="/media/fat/ScummVM"
 if [ -z "$SCRIPTS_DIR" ];                  then SCRIPTS_DIR="/media/fat/Scripts"; fi
 if [ -z "$GITHUB_REPO" ];                  then GITHUB_REPO="https://github.com/bbond007/MiSTer_ScummVM/raw/master"; fi
 if [ -z "$GITHUB_DEB_REPO" ];              then GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"; fi
-if [ -z "$GITHUB_MIDIMIESTER_BIN" ];       then GITHUB_MIDIMIESTER_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister"; fi
+if [ -z "$GITHUB_MIDIMEISTER_BIN" ];       then GITHUB_MIDIMEISTER_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister"; fi
+if [ -z "$GITHUB_MIDIMEISTER_DEBUG_BIN" ]; then GITHUB_MIDIMEISTER_DEBUG_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister-debug"; fi
 if [ -z "$DEB_SCUMM" ];                    then DEB_SCUMMVM17="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM20" ];           then BBOND007_SCUMMVM20="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM21" ];           then BBOND007_SCUMMVM21="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ];  then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM22" ];           then BBOND007_SCUMMVM22="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ];  then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM23" ];           then BBOND007_SCUMMVM23="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ];  then BBOND007_SCUMMVM23_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM25" ];           then BBOND007_SCUMMVM25="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM25_UNSTABLE" ];  then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM26" ];           then BBOND007_SCUMMVM26="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM27" ];           then BBOND007_SCUMMVM27="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM250" ];          then BBOND007_SCUMMVM250="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM250_UNSTABLE" ]; then BBOND007_SCUMMVM250_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM251" ];          then BBOND007_SCUMMVM251="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM251_UNSTABLE" ]; then BBOND007_SCUMMVM251_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM26_UNSTABLE" ];  then BBOND007_SCUMMVM26_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM260" ];          then BBOND007_SCUMMVM260="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM261" ];          then BBOND007_SCUMMVM261="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM270" ];          then BBOND007_SCUMMVM270="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ];  then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ];  then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ];  then BBOND007_SCUMMVM23_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM25_UNSTABLE" ];  then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM26_UNSTABLE" ];  then BBOND007_SCUMMVM26_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM27_UNSTABLE" ];  then BBOND007_SCUMMVM27_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM250_UNSTABLE" ]; then BBOND007_SCUMMVM250_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM251_UNSTABLE" ]; then BBOND007_SCUMMVM251_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM260_UNSTABLE" ]; then BBOND007_SCUMMVM260_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM261" ];          then BBOND007_SCUMMVM261="TRUE"; fi
 if [ -z "$BBOND007_SCUMMVM261_UNSTABLE" ]; then BBOND007_SCUMMVM261_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM270_UNSTABLE" ]; then BBOND007_SCUMMVM270_UNSTABLE="FALSE"; fi
 if [ -z "$ENGINE_DATA" ];                  then ENGINE_DATA="TRUE"; fi
 if [ -z "$CREATE_DIRS" ];                  then CREATE_DIRS="TRUE"; fi
 if [ -z "$DEFAULT_THEME" ];                then DEFAULT_THEME="FALSE"; fi
@@ -341,7 +347,7 @@ then
 		ENGINE_DIR="260"
 	fi
 	
-	if [ "$BBOND007_SCUMMVM26_UNSTABLE" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM260_UNSTABLE" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_6_0_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm260-unstable" -o "$INSTALL_DIR/scummvm260-unstable"
@@ -371,8 +377,49 @@ then
 		ENGINE_DIR="261"
 	fi
 	
+		if [ "$BBOND007_SCUMMVM27" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_7..."
+		${CURL} -L "$GITHUB_REPO/scummvm27" -o "$INSTALL_DIR/scummvm27"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_7.sh" -o "$SCRIPTS_DIR/ScummVM_2_7.sh"
+		THEME_FILE_MOD="scummmodern27.zip"
+		THEME_FILE_REM="scummremastered27.zip"
+		ENGINE_DIR="27"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM27_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_7_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm27-unstable" -o "$INSTALL_DIR/scummvm27-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_7_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_7_Unstable.sh"
+		THEME_FILE_MOD="scummmodern27.zip"
+		THEME_FILE_REM="scummremastered27.zip"
+		ENGINE_DIR="27"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM270" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_7_0..."
+		${CURL} -L "$GITHUB_REPO/scummvm270" -o "$INSTALL_DIR/scummvm270"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_7_0.sh" -o "$SCRIPTS_DIR/ScummVM_2_7_0.sh"
+		THEME_FILE_MOD="scummmodern270.zip"
+		THEME_FILE_REM="scummremastered270.zip"
+		ENGINE_DIR="270"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM270_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_7_0_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm270-unstable" -o "$INSTALL_DIR/scummvm270-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_7_0_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_7_0_Unstable.sh"
+		THEME_FILE_MOD="scummmodern270.zip"
+		THEME_FILE_REM="scummremastered270.zip"
+		ENGINE_DIR="270"
+	fi
+	
 	echo "Downloading --> MIDIMeister (mt32-pi support)..."
-	${CURL} -L "$GITHUB_MIDIMIESTER_BIN" -o "/media/fat/linux/MIDIMeister"
+	${CURL} -L "$GITHUB_MIDIMEISTER_BIN" -o "/media/fat/linux/MIDIMeister"
+	#${CURL} -L "$GITHUB_MIDIMEISTER_DEBUG_BIN" -o "/media/fat/linux/MIDIMeister-debug"
 	
 	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libbsd0_0.7.0-2_armhf.deb|lib*|2|$INSTALL_DIR"
@@ -423,7 +470,7 @@ then
 			
 	if [ "$DELETE_LIB_DOCS" = "TRUE" ];
 	then
-		echo "Deleting junk..."
+		echo "Deleting unnecessary stuff..."
 		for JUNK_FILE in "bug" "doc" "lib" "lintian" "menu" "share";
 		do
 			rm -rf "$INSTALL_DIR/$JUNK_FILE"
