@@ -53,6 +53,7 @@ if [ -z "$BBOND007_SCUMMVM23" ];           then BBOND007_SCUMMVM23="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM25" ];           then BBOND007_SCUMMVM25="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM26" ];           then BBOND007_SCUMMVM26="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM27" ];           then BBOND007_SCUMMVM27="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM28" ];           then BBOND007_SCUMMVM28="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM250" ];          then BBOND007_SCUMMVM250="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM251" ];          then BBOND007_SCUMMVM251="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM260" ];          then BBOND007_SCUMMVM260="FALSE"; fi
@@ -65,6 +66,7 @@ if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ];  then BBOND007_SCUMMVM23_UNSTABLE="FAL
 if [ -z "$BBOND007_SCUMMVM25_UNSTABLE" ];  then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM26_UNSTABLE" ];  then BBOND007_SCUMMVM26_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM27_UNSTABLE" ];  then BBOND007_SCUMMVM27_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM28_UNSTABLE" ];  then BBOND007_SCUMMVM27_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM250_UNSTABLE" ]; then BBOND007_SCUMMVM250_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM251_UNSTABLE" ]; then BBOND007_SCUMMVM251_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM260_UNSTABLE" ]; then BBOND007_SCUMMVM260_UNSTABLE="FALSE"; fi
@@ -379,7 +381,7 @@ then
 		ENGINE_DIR="261"
 	fi
 	
-		if [ "$BBOND007_SCUMMVM27" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM27" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_2_7..."
 		${CURL} -L "$GITHUB_REPO/scummvm27" -o "$INSTALL_DIR/scummvm27"		
@@ -439,6 +441,26 @@ then
 		ENGINE_DIR="271"
 	fi
 	
+	if [ "$BBOND007_SCUMMVM28" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_8..."
+		${CURL} -L "$GITHUB_REPO/scummvm28" -o "$INSTALL_DIR/scummvm28"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_8.sh" -o "$SCRIPTS_DIR/ScummVM_2_8.sh"
+		THEME_FILE_MOD="scummmodern28.zip"
+		THEME_FILE_REM="scummremastered28.zip"
+		ENGINE_DIR="28"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM28_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_8_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm28-unstable" -o "$INSTALL_DIR/scummvm28-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_8_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_8_Unstable.sh"
+		THEME_FILE_MOD="scummmodern28.zip"
+		THEME_FILE_REM="scummremastered28.zip"
+		ENGINE_DIR="28"
+	fi
+	
 	echo "Downloading --> MIDIMeister (mt32-pi support)..."
 	${CURL} -L "$GITHUB_MIDIMEISTER_BIN" -o "/media/fat/linux/MIDIMeister"
 	#${CURL} -L "$GITHUB_MIDIMEISTER_DEBUG_BIN" -o "/media/fat/linux/MIDIMeister-debug"
@@ -493,9 +515,9 @@ then
 	if [ "$DELETE_LIB_DOCS" = "TRUE" ];
 	then
 		echo "Deleting unnecessary stuff..."
-		for JUNK_FILE in "bug" "doc" "lib" "lintian" "menu" "share";
+		for DELETE_DIR in "bug" "doc" "lib" "lintian" "menu" "share";
 		do
-			rm -rf "$INSTALL_DIR/$JUNK_FILE"
+			rm -rf "$INSTALL_DIR/$DELETE_DIR"
 		done
 	fi
 

@@ -24,6 +24,8 @@ Install_ScummVM.ini (options)
       BBOND007_SCUMMVM26_UNSTABLE="FALSE"     (TRUE to install ScummVM 2.6 with work-in-progress game engines enabled)
       BBOND007_SCUMMVM27="FALSE"              (TRUE to install ScummVM 2.7)
       BBOND007_SCUMMVM27_UNSTABLE="FALSE"     (TRUE to install ScummVM 2.7 with work-in-progress game engines enabled)
+      BBOND007_SCUMMVM28="FALSE"              (TRUE to install ScummVM 2.8)
+      BBOND007_SCUMMVM28_UNSTABLE="FALSE"     (TRUE to install ScummVM 2.8 with work-in-progress game engines enabled)
       BBOND007_SCUMMVM250="FALSE"             (TRUE to install ScummVM 2.5.0)
       BBOND007_SCUMMVM250_UNSTABLE="FALSE"    (TRUE to install ScummVM 2.5.0 with work-in-progress game engines enabled)
       BBOND007_SCUMMVM251="FALSE"             (TRUE to install ScummVM 2.5.1)
@@ -32,7 +34,7 @@ Install_ScummVM.ini (options)
       BBOND007_SCUMMVM260_UNSTABLE="FALSE"    (TRUE to install ScummVM 2.6.0 with work-in-progress game engines enabled)
       BBOND007_SCUMMVM261="FALSE"             (TRUE to install ScummVM 2.6.1)
       BBOND007_SCUMMVM261_UNSTABLE="FALSE"    (TRUE to install ScummVM 2.6.1 with work-in-progress game engines enabled)
-      BBOND007_SCUMMVM270="FALSE"              (TRUE to install ScummVM 2.7.0)
+      BBOND007_SCUMMVM270="FALSE"             (TRUE to install ScummVM 2.7.0)
       BBOND007_SCUMMVM270_UNSTABLE="FALSE"    (TRUE to install ScummVM 2.7.0 with work-in-progress game engines enabled)
       BBOND007_SCUMMVM271="TRUE"              (TRUE to install ScummVM 2.7.1)
       BBOND007_SCUMMVM271_UNSTABLE="FALSE"    (TRUE to install ScummVM 2.7.1 with work-in-progress game engines enabled)
@@ -203,4 +205,3 @@ The Feeble Files --> https://youtu.be/yJ-_1XHnOts
 Torin's Passage --> https://youtu.be/ZDNT47mpWNU
 
 Urban Runner --> https://youtu.be/STO1Fg3ZLpM
-
