@@ -81,7 +81,7 @@ Wikipedia --> https://en.wikipedia.org/wiki/ScummVM
 
 ScummVM source used for build:
        
-      https://github.com/bbond007/scummvm
+      https://github.com/scummvm/scummvm
       
 Scummvm_2_2_0 supported engines:
 
