@@ -193,7 +193,7 @@ then
 		mkdir $SCRIPTS_DIR
 	fi
 	
-	if [ "$BBOND007_MASTER" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM_MASTER" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_Master..."
 		${CURL} -L "$GITHUB_REPO/scummvmmaster" -o "$INSTALL_DIR/scummvm28"		
@@ -203,7 +203,7 @@ then
 		ENGINE_DIR="master"
 	fi
 	
-	if [ "$BBOND007_MASTER_UNSTABLE" = "TRUE" ];
+	if [ "$BBOND007_SCUMMVM_MASTER_UNSTABLE" = "TRUE" ];
 	then
 		echo "Downloading --> BBond007_ScummVM_Master_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvmmaster-unstable" -o "$INSTALL_DIR/scummvmmaster-unstable"
