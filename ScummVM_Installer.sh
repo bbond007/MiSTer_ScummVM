@@ -38,54 +38,56 @@ else
 fi
 
 #------------------------------------------------------------------------------
-if [ -z "$ALLOW_INSECURE_SSL" ];           then ALLOW_INSECURE_SSL="TRUE"; fi
-if [ -z "$INSTALL_DIR" ];                  then INSTALL_DIR="/media/fat/ScummVM"; fi
-if [ -z "$SCRIPTS_DIR" ];                  then SCRIPTS_DIR="/media/fat/Scripts"; fi
-if [ -z "$GITHUB_REPO" ];                  then GITHUB_REPO="https://github.com/bbond007/MiSTer_ScummVM/raw/master"; fi
-if [ -z "$GITHUB_DEB_REPO" ];              then GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"; fi
-if [ -z "$GITHUB_MIDIMEISTER_BIN" ];       then GITHUB_MIDIMEISTER_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister"; fi
-if [ -z "$GITHUB_MIDIMEISTER_DEBUG_BIN" ]; then GITHUB_MIDIMEISTER_DEBUG_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister-debug"; fi
-if [ -z "$DEB_SCUMM" ];                    then DEB_SCUMMVM17="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM20" ];           then BBOND007_SCUMMVM20="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM21" ];           then BBOND007_SCUMMVM21="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM22" ];           then BBOND007_SCUMMVM22="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM23" ];           then BBOND007_SCUMMVM23="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM25" ];           then BBOND007_SCUMMVM25="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM26" ];           then BBOND007_SCUMMVM26="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM27" ];           then BBOND007_SCUMMVM27="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM28" ];           then BBOND007_SCUMMVM28="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM250" ];          then BBOND007_SCUMMVM250="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM251" ];          then BBOND007_SCUMMVM251="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM260" ];          then BBOND007_SCUMMVM260="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM261" ];          then BBOND007_SCUMMVM261="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM270" ];          then BBOND007_SCUMMVM270="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM271" ];          then BBOND007_SCUMMVM271="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM280" ];          then BBOND007_SCUMMVM270="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM281" ];          then BBOND007_SCUMMVM271="TRUE"; fi
-if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ];  then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ];  then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ];  then BBOND007_SCUMMVM23_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM25_UNSTABLE" ];  then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM26_UNSTABLE" ];  then BBOND007_SCUMMVM26_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM27_UNSTABLE" ];  then BBOND007_SCUMMVM27_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM28_UNSTABLE" ];  then BBOND007_SCUMMVM27_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM250_UNSTABLE" ]; then BBOND007_SCUMMVM250_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM251_UNSTABLE" ]; then BBOND007_SCUMMVM251_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM260_UNSTABLE" ]; then BBOND007_SCUMMVM260_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM261_UNSTABLE" ]; then BBOND007_SCUMMVM261_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM270_UNSTABLE" ]; then BBOND007_SCUMMVM270_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM271_UNSTABLE" ]; then BBOND007_SCUMMVM271_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM280_UNSTABLE" ]; then BBOND007_SCUMMVM270_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM281_UNSTABLE" ]; then BBOND007_SCUMMVM271_UNSTABLE="FALSE"; fi
-if [ -z "$ENGINE_DATA" ];                  then ENGINE_DATA="TRUE"; fi
-if [ -z "$CREATE_DIRS" ];                  then CREATE_DIRS="TRUE"; fi
-if [ -z "$DEFAULT_THEME" ];                then DEFAULT_THEME="FALSE"; fi
-if [ -z "$INTERNET_CHECK" ];               then INTERNET_CHECK="https://github.com"; fi
-if [ -z "$VERBOSE_MODE" ];                 then VERBOSE_MODE="FALSE"; fi
+if [ -z "$ALLOW_INSECURE_SSL" ];               then ALLOW_INSECURE_SSL="TRUE"; fi
+if [ -z "$INSTALL_DIR" ];                      then INSTALL_DIR="/media/fat/ScummVM"; fi
+if [ -z "$SCRIPTS_DIR" ];                      then SCRIPTS_DIR="/media/fat/Scripts"; fi
+if [ -z "$GITHUB_REPO" ];                      then GITHUB_REPO="https://github.com/bbond007/MiSTer_ScummVM/raw/master"; fi
+if [ -z "$GITHUB_DEB_REPO" ];                  then GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"; fi
+if [ -z "$GITHUB_MIDIMEISTER_BIN" ];           then GITHUB_MIDIMEISTER_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister"; fi
+if [ -z "$GITHUB_MIDIMEISTER_DEBUG_BIN" ];     then GITHUB_MIDIMEISTER_DEBUG_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister-debug"; fi
+if [ -z "$DEB_SCUMM" ];                        then DEB_SCUMMVM17="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM_MASTER" ];          then BBOND007_SCUMMVM_MASTER="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM20" ];               then BBOND007_SCUMMVM20="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM21" ];               then BBOND007_SCUMMVM21="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM22" ];               then BBOND007_SCUMMVM22="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM23" ];               then BBOND007_SCUMMVM23="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM25" ];               then BBOND007_SCUMMVM25="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM26" ];               then BBOND007_SCUMMVM26="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM27" ];               then BBOND007_SCUMMVM27="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM28" ];               then BBOND007_SCUMMVM28="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM250" ];              then BBOND007_SCUMMVM250="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM251" ];              then BBOND007_SCUMMVM251="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM260" ];              then BBOND007_SCUMMVM260="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM261" ];              then BBOND007_SCUMMVM261="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM270" ];              then BBOND007_SCUMMVM270="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM271" ];              then BBOND007_SCUMMVM271="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM280" ];              then BBOND007_SCUMMVM280="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM281" ];              then BBOND007_SCUMMVM281="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM_MASTER_UNSTABLE" ]; then BBOND007_SCUMMVM_MASTER_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ];      then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ];      then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ];      then BBOND007_SCUMMVM23_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM25_UNSTABLE" ];      then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM26_UNSTABLE" ];      then BBOND007_SCUMMVM26_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM27_UNSTABLE" ];      then BBOND007_SCUMMVM27_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM28_UNSTABLE" ];      then BBOND007_SCUMMVM27_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM250_UNSTABLE" ];     then BBOND007_SCUMMVM250_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM251_UNSTABLE" ];     then BBOND007_SCUMMVM251_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM260_UNSTABLE" ];     then BBOND007_SCUMMVM260_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM261_UNSTABLE" ];     then BBOND007_SCUMMVM261_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM270_UNSTABLE" ];     then BBOND007_SCUMMVM270_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM271_UNSTABLE" ];     then BBOND007_SCUMMVM271_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM280_UNSTABLE" ];     then BBOND007_SCUMMVM280_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM281_UNSTABLE" ];     then BBOND007_SCUMMVM281_UNSTABLE="FALSE"; fi
+if [ -z "$ENGINE_DATA" ];                      then ENGINE_DATA="TRUE"; fi
+if [ -z "$CREATE_DIRS" ];                      then CREATE_DIRS="TRUE"; fi
+if [ -z "$DEFAULT_THEME" ];                    then DEFAULT_THEME="FALSE"; fi
+if [ -z "$INTERNET_CHECK" ];                   then INTERNET_CHECK="https://github.com"; fi
+if [ -z "$VERBOSE_MODE" ];                     then VERBOSE_MODE="FALSE"; fi
 
 #These options probably should not be changed...
-if [ -z "$DELETE_LIB_DOCS" ];              then DELETE_LIB_DOCS="TRUE"; fi
-if [ -z "$DO_INSTALL" ];                   then DO_INSTALL="TRUE"; fi
+if [ -z "$DELETE_LIB_DOCS" ];                  then DELETE_LIB_DOCS="TRUE"; fi
+if [ -z "$DO_INSTALL" ];                       then DO_INSTALL="TRUE"; fi
 
 #------------------------------------------------------------------------------
 function setupCURL
@@ -189,6 +191,26 @@ then
 		echo "Scripts directory not found :("
 		echo "Creating --> $SCRIPTS_DIR"
 		mkdir $SCRIPTS_DIR
+	fi
+	
+	if [ "$BBOND007_MASTER" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_Master..."
+		${CURL} -L "$GITHUB_REPO/scummvmmaster" -o "$INSTALL_DIR/scummvm28"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_master.sh" -o "$SCRIPTS_DIR/ScummVM_Master.sh"
+		THEME_FILE_MOD="scummmodernmaster.zip"
+		THEME_FILE_REM="scummremasteredmaster.zip"
+		ENGINE_DIR="master"
+	fi
+	
+	if [ "$BBOND007_MASTER_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_Master_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvmmaster-unstable" -o "$INSTALL_DIR/scummvmmaster-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_Master_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_Master_Unstable.sh"
+		THEME_FILE_MOD="scummmodernmaster.zip"
+		THEME_FILE_REM="scummremasteredmaster.zip"
+		ENGINE_DIR="master"
 	fi
 	
 	if [ "$DEB_SCUMMVM17" = "TRUE" ];
