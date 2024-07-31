@@ -197,7 +197,7 @@ then
 	then
 		echo "Downloading --> BBond007_ScummVM_Master..."
 		${CURL} -L "$GITHUB_REPO/scummvmmaster" -o "$INSTALL_DIR/scummvmmaster"		
-		${CURL} -L "$GITHUB_REPO/ScummVM_master.sh" -o "$SCRIPTS_DIR/ScummVM_Master.sh"
+		${CURL} -L "$GITHUB_REPO/ScummVM_Master.sh" -o "$SCRIPTS_DIR/ScummVM_Master.sh"
 		THEME_FILE_MOD="scummmodernmaster.zip"
 		THEME_FILE_REM="scummremasteredmaster.zip"
 		ENGINE_DIR="master"
