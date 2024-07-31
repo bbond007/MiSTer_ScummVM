@@ -193,26 +193,6 @@ then
 		mkdir $SCRIPTS_DIR
 	fi
 	
-	if [ "$BBOND007_SCUMMVM_MASTER" = "TRUE" ];
-	then
-		echo "Downloading --> BBond007_ScummVM_Master..."
-		${CURL} -L "$GITHUB_REPO/scummvmmaster" -o "$INSTALL_DIR/scummvmmaster"		
-		${CURL} -L "$GITHUB_REPO/ScummVM_Master.sh" -o "$SCRIPTS_DIR/ScummVM_Master.sh"
-		THEME_FILE_MOD="scummmodernmaster.zip"
-		THEME_FILE_REM="scummremasteredmaster.zip"
-		ENGINE_DIR="master"
-	fi
-	
-	if [ "$BBOND007_SCUMMVM_MASTER_UNSTABLE" = "TRUE" ];
-	then
-		echo "Downloading --> BBond007_ScummVM_Master_Unstable..."
-		${CURL} -L "$GITHUB_REPO/scummvmmaster-unstable" -o "$INSTALL_DIR/scummvmmaster-unstable"
-		${CURL} -L "$GITHUB_REPO/ScummVM_Master_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_Master_Unstable.sh"
-		THEME_FILE_MOD="scummmodernmaster.zip"
-		THEME_FILE_REM="scummremasteredmaster.zip"
-		ENGINE_DIR="master"
-	fi
-	
 	if [ "$DEB_SCUMMVM17" = "TRUE" ];
 	then
 		installGithubDEBS "$GITHUB_DEB_REPO|scummvm_1.7.0+dfsg-2_armhf.deb|scummvm|3|$INSTALL_DIR"
@@ -533,6 +513,26 @@ then
 		THEME_FILE_MOD="scummmodern28.zip"
 		THEME_FILE_REM="scummremastered28.zip"
 		ENGINE_DIR="28"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM_MASTER" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_Master..."
+		${CURL} -L "$GITHUB_REPO/scummvmmaster" -o "$INSTALL_DIR/scummvmmaster"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_Master.sh" -o "$SCRIPTS_DIR/ScummVM_Master.sh"
+		THEME_FILE_MOD="scummmodernmaster.zip"
+		THEME_FILE_REM="scummremasteredmaster.zip"
+		ENGINE_DIR="master"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM_MASTER_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_Master_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvmmaster-unstable" -o "$INSTALL_DIR/scummvmmaster-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_Master_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_Master_Unstable.sh"
+		THEME_FILE_MOD="scummmodernmaster.zip"
+		THEME_FILE_REM="scummremasteredmaster.zip"
+		ENGINE_DIR="master"
 	fi
 	
 	echo "Downloading --> MIDIMeister (mt32-pi support)..."
