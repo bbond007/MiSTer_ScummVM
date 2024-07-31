@@ -46,7 +46,7 @@ if [ -z "$GITHUB_DEB_REPO" ];                  then GITHUB_DEB_REPO="$GITHUB_REP
 if [ -z "$GITHUB_MIDIMEISTER_BIN" ];           then GITHUB_MIDIMEISTER_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister"; fi
 if [ -z "$GITHUB_MIDIMEISTER_DEBUG_BIN" ];     then GITHUB_MIDIMEISTER_DEBUG_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister-debug"; fi
 if [ -z "$DEB_SCUMM" ];                        then DEB_SCUMMVM17="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM_MASTER" ];          then BBOND007_SCUMMVM_MASTER="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM_MASTER" ];          then BBOND007_SCUMMVM_MASTER="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM20" ];               then BBOND007_SCUMMVM20="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM21" ];               then BBOND007_SCUMMVM21="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM22" ];               then BBOND007_SCUMMVM22="FALSE"; fi
@@ -63,7 +63,7 @@ if [ -z "$BBOND007_SCUMMVM270" ];              then BBOND007_SCUMMVM270="FALSE";
 if [ -z "$BBOND007_SCUMMVM271" ];              then BBOND007_SCUMMVM271="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM280" ];              then BBOND007_SCUMMVM280="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM281" ];              then BBOND007_SCUMMVM281="TRUE"; fi
-if [ -z "$BBOND007_SCUMMVM_MASTER_UNSTABLE" ]; then BBOND007_SCUMMVM_MASTER_UNSTABLE="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM_MASTER_UNSTABLE" ]; then BBOND007_SCUMMVM_MASTER_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ];      then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ];      then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ];      then BBOND007_SCUMMVM23_UNSTABLE="FALSE"; fi
@@ -607,7 +607,7 @@ then
 	
 	if [ "$ENGINE_DATA" = "TRUE" ] && [ "$ENGINE_DIR" != "" ];
 	then
-		for ENGINE_FILE in "access.dat" "cryo.dat" "cryomni3d.dat" "drascula.dat" "fonts.dat" "hugo.dat" "kyra.dat" "lure.dat" "macventure.dat" "mort.dat" "prince_translation.dat" "supernova.dat" "teenagent.dat" "titanic.dat" "tony.dat" "toon.dat" "translations.dat" "ultima.dat";
+		for ENGINE_FILE in "access.dat" "cryo.dat" "cryomni3d.dat" "drascula.dat" "fonts.dat" "hugo.dat" "kyra.dat" "lure.dat" "macventure.dat" "mort.dat" "prince_translation.dat" "supernova.dat" "teenagent.dat" "titanic.dat" "tony.dat" "toon.dat" "translations.dat" "ultima.dat" "bagel.dat";
 		do
 			echo "Downloading engine data --> $ENGINE_FILE"
 			${CURL} -L "$GITHUB_REPO/engine-data/$ENGINE_DIR/$ENGINE_FILE" -o "$INSTALL_DIR/$ENGINE_FILE"
