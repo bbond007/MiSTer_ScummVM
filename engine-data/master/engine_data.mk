@@ -10,8 +10,14 @@ endif
 ifdef ENABLE_CRYOMNI3D
 DIST_FILES_LIST += dists/engine-data/cryomni3d.dat
 endif
+ifdef ENABLE_DARKSEED
+DIST_FILES_LIST += dists/engine-data/darkseed.dat
+endif
 ifdef ENABLE_DRASCULA
 DIST_FILES_LIST += dists/engine-data/drascula.dat
+endif
+ifdef ENABLE_GOT
+DIST_FILES_LIST += dists/engine-data/got.gfx
 endif
 ifdef ENABLE_HADESCH
 DIST_FILES_LIST += dists/engine-data/hadesch_translations.dat
