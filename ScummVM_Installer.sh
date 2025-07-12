@@ -64,7 +64,8 @@ if [ -z "$BBOND007_SCUMMVM270" ];              then BBOND007_SCUMMVM270="FALSE";
 if [ -z "$BBOND007_SCUMMVM271" ];              then BBOND007_SCUMMVM271="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM280" ];              then BBOND007_SCUMMVM280="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM281" ];              then BBOND007_SCUMMVM281="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM290" ];              then BBOND007_SCUMMVM290="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM290" ];              then BBOND007_SCUMMVM290="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM291" ];              then BBOND007_SCUMMVM291="TRUE"; fi
 if [ -z "$BBOND007_SCUMMVM_MASTER_UNSTABLE" ]; then BBOND007_SCUMMVM_MASTER_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ];      then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ];      then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
@@ -82,6 +83,7 @@ if [ -z "$BBOND007_SCUMMVM271_UNSTABLE" ];     then BBOND007_SCUMMVM271_UNSTABLE
 if [ -z "$BBOND007_SCUMMVM280_UNSTABLE" ];     then BBOND007_SCUMMVM280_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM281_UNSTABLE" ];     then BBOND007_SCUMMVM281_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM290_UNSTABLE" ];     then BBOND007_SCUMMVM290_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM291_UNSTABLE" ];     then BBOND007_SCUMMVM291_UNSTABLE="FALSE"; fi
 if [ -z "$ENGINE_DATA" ];                      then ENGINE_DATA="TRUE"; fi
 if [ -z "$CREATE_DIRS" ];                      then CREATE_DIRS="TRUE"; fi
 if [ -z "$DEFAULT_THEME" ];                    then DEFAULT_THEME="FALSE"; fi
@@ -537,6 +539,26 @@ then
 		THEME_FILE_MOD="scummmodern290.zip"
 		THEME_FILE_REM="scummremastered290.zip"
 		ENGINE_DIR="290"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM291" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_9_1..."
+		${CURL} -L "$GITHUB_REPO/scummvm291" -o "$INSTALL_DIR/scummvm291"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_9_1.sh" -o "$SCRIPTS_DIR/ScummVM_2_9_1.sh"
+		THEME_FILE_MOD="scummmodern291.zip"
+		THEME_FILE_REM="scummremastered291.zip"
+		ENGINE_DIR="291"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM291_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2_9_1_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm291-unstable" -o "$INSTALL_DIR/scummvm291-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_2_9_1_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2_9_1_Unstable.sh"
+		THEME_FILE_MOD="scummmodern291.zip"
+		THEME_FILE_REM="scummremastered291.zip"
+		ENGINE_DIR="291"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM29" = "TRUE" ];
