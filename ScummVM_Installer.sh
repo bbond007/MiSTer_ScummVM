@@ -66,6 +66,8 @@ if [ -z "$BBOND007_SCUMMVM280" ];              then BBOND007_SCUMMVM280="FALSE";
 if [ -z "$BBOND007_SCUMMVM281" ];              then BBOND007_SCUMMVM281="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM290" ];              then BBOND007_SCUMMVM290="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM291" ];              then BBOND007_SCUMMVM291="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM30" ];               then BBOND007_SCUMMVM30="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM202610" ];           then BBOND007_SCUMMVM202610="TRUE"; fi
 if [ -z "$BBOND007_SCUMMVM_MASTER_UNSTABLE" ]; then BBOND007_SCUMMVM_MASTER_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ];      then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ];      then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
@@ -84,6 +86,8 @@ if [ -z "$BBOND007_SCUMMVM280_UNSTABLE" ];     then BBOND007_SCUMMVM280_UNSTABLE
 if [ -z "$BBOND007_SCUMMVM281_UNSTABLE" ];     then BBOND007_SCUMMVM281_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM290_UNSTABLE" ];     then BBOND007_SCUMMVM290_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM291_UNSTABLE" ];     then BBOND007_SCUMMVM291_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM30_UNSTABLE" ];      then BBOND007_SCUMMVM30_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM202610_UNSTABLE" ];  then BBOND007_SCUMMVM202610_UNSTABLE="FALSE"; fi
 if [ -z "$ENGINE_DATA" ];                      then ENGINE_DATA="TRUE"; fi
 if [ -z "$CREATE_DIRS" ];                      then CREATE_DIRS="TRUE"; fi
 if [ -z "$DEFAULT_THEME" ];                    then DEFAULT_THEME="FALSE"; fi
@@ -579,6 +583,46 @@ then
 		THEME_FILE_MOD="scummmodern29.zip"
 		THEME_FILE_REM="scummremastered29.zip"
 		ENGINE_DIR="29"
+	fi
+
+	if [ "$BBOND007_SCUMMVM30" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_3_0..."
+		${CURL} -L "$GITHUB_REPO/scummvm30" -o "$INSTALL_DIR/scummvm30"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_3_0.sh" -o "$SCRIPTS_DIR/ScummVM_3_0.sh"
+		THEME_FILE_MOD="scummmodern30.zip"
+		THEME_FILE_REM="scummremastered30.zip"
+		ENGINE_DIR="30"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM30_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_3_0_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm30-unstable" -o "$INSTALL_DIR/scummvm30-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_3_0_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_3_0_Unstable.sh"
+		THEME_FILE_MOD="scummmodern30.zip"
+		THEME_FILE_REM="scummremastered30.zip"
+		ENGINE_DIR="30"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM202610" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2026_1_0..."
+		${CURL} -L "$GITHUB_REPO/scummvm202610" -o "$INSTALL_DIR/scummvm202610"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_2026_1_0.sh" -o "$SCRIPTS_DIR/ScummVM_2026_1_0.sh"
+		THEME_FILE_MOD="scummmodern2026-1-0.zip"
+		THEME_FILE_REM="scummremastered202610.zip"
+		ENGINE_DIR="202610"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM202610_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_2026_1_0_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm202610-unstable" -o "$INSTALL_DIR/scummvm202610-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_2026_1_0_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_2026_1_0_Unstable.sh"
+		THEME_FILE_MOD="scummmodern2026-1-0.zip"
+		THEME_FILE_REM="scummremastered202610.zip"
+		ENGINE_DIR="202610"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM_MASTER" = "TRUE" ];
