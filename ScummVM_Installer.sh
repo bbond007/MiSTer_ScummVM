@@ -56,6 +56,7 @@ if [ -z "$BBOND007_SCUMMVM26" ];               then BBOND007_SCUMMVM26="FALSE"; 
 if [ -z "$BBOND007_SCUMMVM27" ];               then BBOND007_SCUMMVM27="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM28" ];               then BBOND007_SCUMMVM28="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM29" ];               then BBOND007_SCUMMVM29="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM30" ];               then BBOND007_SCUMMVM30="TRUE";  fi
 if [ -z "$BBOND007_SCUMMVM250" ];              then BBOND007_SCUMMVM250="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM251" ];              then BBOND007_SCUMMVM251="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM260" ];              then BBOND007_SCUMMVM260="FALSE"; fi
@@ -65,7 +66,7 @@ if [ -z "$BBOND007_SCUMMVM271" ];              then BBOND007_SCUMMVM271="FALSE";
 if [ -z "$BBOND007_SCUMMVM280" ];              then BBOND007_SCUMMVM280="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM281" ];              then BBOND007_SCUMMVM281="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM290" ];              then BBOND007_SCUMMVM290="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM291" ];              then BBOND007_SCUMMVM291="TRUE"; fi
+if [ -z "$BBOND007_SCUMMVM291" ];              then BBOND007_SCUMMVM291="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM_MASTER_UNSTABLE" ]; then BBOND007_SCUMMVM_MASTER_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM21_UNSTABLE" ];      then BBOND007_SCUMMVM21_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM22_UNSTABLE" ];      then BBOND007_SCUMMVM22_UNSTABLE="FALSE"; fi
@@ -73,7 +74,9 @@ if [ -z "$BBOND007_SCUMMVM23_UNSTABLE" ];      then BBOND007_SCUMMVM23_UNSTABLE=
 if [ -z "$BBOND007_SCUMMVM25_UNSTABLE" ];      then BBOND007_SCUMMVM25_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM26_UNSTABLE" ];      then BBOND007_SCUMMVM26_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM27_UNSTABLE" ];      then BBOND007_SCUMMVM27_UNSTABLE="FALSE"; fi
-if [ -z "$BBOND007_SCUMMVM28_UNSTABLE" ];      then BBOND007_SCUMMVM27_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM28_UNSTABLE" ];      then BBOND007_SCUMMVM28_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM29_UNSTABLE" ];      then BBOND007_SCUMMVM29_UNSTABLE="FALSE"; fi
+if [ -z "$BBOND007_SCUMMVM30_UNSTABLE" ];      then BBOND007_SCUMMVM30_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM250_UNSTABLE" ];     then BBOND007_SCUMMVM250_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM251_UNSTABLE" ];     then BBOND007_SCUMMVM251_UNSTABLE="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM260_UNSTABLE" ];     then BBOND007_SCUMMVM260_UNSTABLE="FALSE"; fi
@@ -579,6 +582,26 @@ then
 		THEME_FILE_MOD="scummmodern29.zip"
 		THEME_FILE_REM="scummremastered29.zip"
 		ENGINE_DIR="29"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM30" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_3_0..."
+		${CURL} -L "$GITHUB_REPO/scummvm30" -o "$INSTALL_DIR/scummvm30"		
+		${CURL} -L "$GITHUB_REPO/ScummVM_3_0.sh" -o "$SCRIPTS_DIR/ScummVM_3_0.sh"
+		THEME_FILE_MOD="scummmodern30.zip"
+		THEME_FILE_REM="scummremastered30.zip"
+		ENGINE_DIR="30"
+	fi
+	
+	if [ "$BBOND007_SCUMMVM30_UNSTABLE" = "TRUE" ];
+	then
+		echo "Downloading --> BBond007_ScummVM_3_0_Unstable..."
+		${CURL} -L "$GITHUB_REPO/scummvm30-unstable" -o "$INSTALL_DIR/scummvm30-unstable"
+		${CURL} -L "$GITHUB_REPO/ScummVM_3_0_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_3_0_Unstable.sh"
+		THEME_FILE_MOD="scummmodern30.zip"
+		THEME_FILE_REM="scummremastered30.zip"
+		ENGINE_DIR="30"
 	fi
 	
 	if [ "$BBOND007_SCUMMVM_MASTER" = "TRUE" ];
