@@ -45,6 +45,7 @@ if [ -z "$GITHUB_REPO" ];                      then GITHUB_REPO="https://github.
 if [ -z "$GITHUB_DEB_REPO" ];                  then GITHUB_DEB_REPO="$GITHUB_REPO/DEBS"; fi
 if [ -z "$GITHUB_MIDIMEISTER_BIN" ];           then GITHUB_MIDIMEISTER_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister"; fi
 if [ -z "$GITHUB_MIDIMEISTER_DEBUG_BIN" ];     then GITHUB_MIDIMEISTER_DEBUG_BIN="https://github.com/bbond007/MIDIMeister/raw/main/MIDIMeister-debug"; fi
+if [ -z "$GITHUB_BBVMODE_BIN" ];               then GITHUB_BBVMODE_BIN="https://github.com/bbond007/bbvmode/raw/main/bbvmode"; fi
 if [ -z "$DEB_SCUMM" ];                        then DEB_SCUMMVM17="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM_MASTER" ];          then BBOND007_SCUMMVM_MASTER="FALSE"; fi
 if [ -z "$BBOND007_SCUMMVM20" ];               then BBOND007_SCUMMVM20="FALSE"; fi
@@ -589,6 +590,7 @@ then
 		echo "Downloading --> BBond007_ScummVM_3_0..."
 		${CURL} -L "$GITHUB_REPO/scummvm30" -o "$INSTALL_DIR/scummvm30"		
 		${CURL} -L "$GITHUB_REPO/ScummVM_3_0.sh" -o "$SCRIPTS_DIR/ScummVM_3_0.sh"
+		${CURL} -L "$GITHUB_REPO/ScummVM_3_0_800x600.sh" -o "$SCRIPTS_DIR/ScummVM_3_0_800x600.sh"
 		THEME_FILE_MOD="scummmodern30.zip"
 		THEME_FILE_REM="scummremastered30.zip"
 		ENGINE_DIR="30"
@@ -599,6 +601,7 @@ then
 		echo "Downloading --> BBond007_ScummVM_3_0_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvm30-unstable" -o "$INSTALL_DIR/scummvm30-unstable"
 		${CURL} -L "$GITHUB_REPO/ScummVM_3_0_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_3_0_Unstable.sh"
+		${CURL} -L "$GITHUB_REPO/ScummVM_3_0_800x600_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_3_0_800x600_Unstable.sh"
 		THEME_FILE_MOD="scummmodern30.zip"
 		THEME_FILE_REM="scummremastered30.zip"
 		ENGINE_DIR="30"
@@ -609,6 +612,7 @@ then
 		echo "Downloading --> BBond007_ScummVM_Master..."
 		${CURL} -L "$GITHUB_REPO/scummvmmaster" -o "$INSTALL_DIR/scummvmmaster"		
 		${CURL} -L "$GITHUB_REPO/ScummVM_Master.sh" -o "$SCRIPTS_DIR/ScummVM_Master.sh"
+		${CURL} -L "$GITHUB_REPO/ScummVM_Master_800x600.sh" -o "$SCRIPTS_DIR/ScummVM_Master_800x600.sh"
 		THEME_FILE_MOD="scummmodernmaster.zip"
 		THEME_FILE_REM="scummremasteredmaster.zip"
 		ENGINE_DIR="master"
@@ -619,6 +623,7 @@ then
 		echo "Downloading --> BBond007_ScummVM_Master_Unstable..."
 		${CURL} -L "$GITHUB_REPO/scummvmmaster-unstable" -o "$INSTALL_DIR/scummvmmaster-unstable"
 		${CURL} -L "$GITHUB_REPO/ScummVM_Master_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_Master_Unstable.sh"
+		${CURL} -L "$GITHUB_REPO/ScummVM_Master_800x600_Unstable.sh" -o "$SCRIPTS_DIR/ScummVM_Master_800x600_Unstable.sh"
 		THEME_FILE_MOD="scummmodernmaster.zip"
 		THEME_FILE_REM="scummremasteredmaster.zip"
 		ENGINE_DIR="master"
@@ -627,6 +632,9 @@ then
 	echo "Downloading --> MIDIMeister (mt32-pi support)..."
 	${CURL} -L "$GITHUB_MIDIMEISTER_BIN" -o "/media/fat/linux/MIDIMeister"
 	#${CURL} -L "$GITHUB_MIDIMEISTER_DEBUG_BIN" -o "/media/fat/linux/MIDIMeister-debug"
+	
+	echo "Downloading --> bbvmode (video/framebuffer resolution utility)..."
+	${CURL} -L "$GITHUB_BBVMODE_BIN" -o "/media/fat/linux/bbvmode"
 	
 	installGithubDEBS "$GITHUB_DEB_REPO|libasyncns0_0.8-6_armhf.deb|lib*|3|$INSTALL_DIR"
 	installGithubDEBS "$GITHUB_DEB_REPO|libbsd0_0.7.0-2_armhf.deb|lib*|2|$INSTALL_DIR"

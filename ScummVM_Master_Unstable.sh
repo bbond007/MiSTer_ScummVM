@@ -17,12 +17,14 @@ SCUMMVM_HOME_DIR="/media/fat/ScummVM"
 SCUMMVM_OPTIONS="--opl-driver=db --output-rate=48000"
 SCUMMVM_LIB_PATH="${SCUMMVM_HOME_DIR}/arm-linux-gnueabihf:${SCUMMVM_HOME_DIR}/arm-linux-gnueabihf/pulseaudio"
 MT32PI_DRIVER="/media/fat/linux/MIDIMeister"
+BBVMODE="/media/fat/linux/bbvmode"
+
 
 # Set corename for tty2oled/i2c2oled
 echo "ScummVM" > /tmp/CORENAME
 
-echo "Setting Video mode..."
-vmode -r 640 480 rgb16
+#Set video mode 
+$BBVMODE 640x480@60 RGB16
 
 echo "Setting library path..."
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${SCUMMVM_LIB_PATH}"
@@ -49,6 +51,8 @@ then
 	echo "Killing MIDIMeister..."
 	killall ${MT32PI_DRIVER}
 fi
+
+$BBVMODE MENU
 
 # Set corename for tty2oled/i2c2oled
 echo "MENU" > /tmp/CORENAME
